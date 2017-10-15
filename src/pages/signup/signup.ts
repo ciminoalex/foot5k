@@ -7,9 +7,14 @@ import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy';
 
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 
+import { SettingsPage } from '../settings/settings';
+
 import { FacebookLoginService } from '../facebook-login/facebook-login.service';
 import { GoogleLoginService } from '../google-login/google-login.service';
 import { TwitterLoginService } from '../twitter-login/twitter-login.service';
+
+import { UsersProvider } from '../../providers/users/users';
+import { UserObject } from '../../providers/users/users.model';
 
 @Component({
   selector: 'signup-page',
@@ -19,26 +24,62 @@ export class SignupPage {
   signup: FormGroup;
   main_page: { component: any };
   loading: any;
-
+  msg: string;
+  
   constructor(
     public nav: NavController,
     public modal: ModalController,
     public facebookLoginService: FacebookLoginService,
     public googleLoginService: GoogleLoginService,
     public twitterLoginService: TwitterLoginService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public UsersService: UsersProvider
   ) {
-    this.main_page = { component: TabsNavigationPage };
+    this.main_page = { component: SettingsPage };
 
     this.signup = new FormGroup({
-      email: new FormControl('', Validators.required),
+      email: new FormControl('pippo@paperino.com', Validators.required),
       password: new FormControl('test', Validators.required),
       confirm_password: new FormControl('test', Validators.required)
     });
   }
 
   doSignup(){
-    this.nav.setRoot(this.main_page.component);
+    this.loading = this.loadingCtrl.create();
+
+    var _user: UserObject;
+    
+    var _email: string = this.signup.controls.email.value;
+    var _password: string = this.signup.controls.password.value;
+    var _conf_pwd: string = this.signup.controls.confirm_password.value;
+
+    if(_password!=_conf_pwd){
+      console.log("PAssword and Confirm not matchs")
+      return false;
+    }
+
+    this.UsersService.logInMail(_email,_password).subscribe(data=>{
+      _user = data; 
+      console.log(_user)
+      if(_user!=null)
+      {
+        this.msg = "Email already exist! Goto Login!";
+        this.loading.dismiss();
+      }else{
+        this.UsersService.signUpMail(_email,_password).subscribe(data=>{
+          this.loading.dismiss();
+          _user = data; 
+          console.log(_user)
+          if(_user==null)
+          {
+            this.msg = "Errors during Signing Up!";
+          }else{
+            console.log(_user.ID)
+            this.nav.setRoot(this.main_page.component);
+          }
+        })
+          }
+    })
   }
 
   doFacebookSignup() {

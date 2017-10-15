@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content class="login-content auth-content">
+  <div>{{msg}}</div>
   <form class="login-form auth-form" [formGroup]="login" (ngSubmit)="doLogin()">
     <ion-item>
       <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>

@@ -28,6 +28,7 @@ import { FiltersPage } from '../pages/filters/filters';
 import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
 import { FormValidationsPage } from '../pages/form-validations/form-validations';
+import { HomePage } from '../pages/home/home';
 
 import { PreloadImage } from '../components/preload-image/preload-image';
 import { BackgroundImage } from '../components/background-image/background-image';
@@ -79,6 +80,10 @@ import { VideoPlayerModule } from '../components/video-player/video-player.modul
 import { ValidatorsModule } from '../components/validators/validators.module';
 
 import { LanguageService } from '../providers/language/language.service';
+import { UsersProvider } from '../providers/users/users';
+
+import { GlobalVars } from '../components/global-variables';
+import { LocalInfoProvider } from '../providers/local-info/local-info';
 
 export function createTranslateLoader(http: Http) {
 	return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -116,7 +121,8 @@ export function createTranslateLoader(http: Http) {
     TwitterLoginPage,
 		AdsPage,
 		FormValidationsPage,
-		VideoPlaylistPage,
+    VideoPlaylistPage,
+    HomePage,
 
     PreloadImage,
     BackgroundImage,
@@ -176,7 +182,8 @@ export function createTranslateLoader(http: Http) {
     TwitterLoginPage,
 		AdsPage,
 		FormValidationsPage,
-		VideoPlaylistPage
+    VideoPlaylistPage,
+    HomePage
   ],
   providers: [
     FeedService,
@@ -206,7 +213,10 @@ export function createTranslateLoader(http: Http) {
 		AppRate,
 		ImagePicker,
 		Crop,
-		EmailComposer
+		EmailComposer,
+    UsersProvider,
+    GlobalVars,
+    LocalInfoProvider
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

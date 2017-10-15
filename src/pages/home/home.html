@@ -1,0 +1,105 @@
+<ion-header class="listing-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <div class="header-logo" style="margin:auto;">
+        <preload-image [ratio]="{w:534, h:194}" src="./assets/images/logo.png"></preload-image>
+      </div>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button>
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="profile-content">
+  <div class="user-details">
+    <ion-row class="user-main-data-row">
+      <ion-col no-padding width-33>
+        <preload-image class="user-image" [ratio]="{w:1, h:1}" [(src)]="CurrentUser.Picture" alt="CurrentUser.NomeCompleto" title="CurrentUser.NomeCompleto"></preload-image>
+      </ion-col>
+      <ion-col no-padding>
+        <ion-row class="social-presence-row">
+          <ion-col width-33 class="social-presence-item">
+            <a>
+              <h2 class="social-presence-value">{{CurrentUser.matches_played}}</h2>
+              <h4 class="social-presence-title">{{'PLAYED' | translate }}</h4>
+            </a>
+          </ion-col>
+          <ion-col width-33 class="social-presence-item">
+            <a>
+              <h2 class="social-presence-value">{{CurrentUser.matches_win}}</h2>
+              <h4 class="social-presence-title">{{'WIN' | translate }}</h4>
+            </a>
+          </ion-col>
+          <ion-col width-33 class="social-presence-item">
+            <a>
+              <h2 class="social-presence-value">{{CurrentUser.matches_lost}}</h2>
+              <h4 class="social-presence-title">{{'LOST' | translate }}</h4>
+            </a>
+          </ion-col>
+        </ion-row>
+        <ion-row class="profile-action-row">
+          <ion-col no-padding>
+            <button ion-button block small (click)="goToSettings()">
+              {{'EDIT_PROFILE' | translate}}
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row wrap class="user-bio-row">
+      <ion-col no-padding width-50>
+        <h2 class="user-name">{{CurrentUser.NomeCompleto}}</h2>
+      </ion-col>
+      <ion-col no-padding width-50>
+        <span class="user-location">{{CurrentUser.Ruolo}}</span>
+      </ion-col>
+      <ion-col no-padding width-100>
+        <p class="user-description">
+          {{CurrentUser.description}}
+        </p>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div>
+    <div>
+      <ion-list class="schedule-list">
+        <ion-item class="schedule-item" *ngFor="let match of CurrentUser.MatchesALL">
+          <ion-row>
+            <ion-col width-20 class="schedule-date">
+              <h2 class="schedule-day">{{match.data | date:'dd'}}</h2>
+              <h3 class="schedule-month">{{match.data | date:'MMM'}}</h3>
+              <h4 class="schedule-time">{{match.ora | slice:0:5}}</h4>
+            </ion-col>
+            <ion-col width-80 class="schedule-data">
+              <div class="data-item">
+                <div class="item-content">
+                  <h2 class="item-title one-line">{{match.campo}}</h2>
+                  <div class="item-description">
+                    <ion-icon class="description-icon" name="clock"></ion-icon>
+                    <p class="description-text">{{match.data}}</p>
+                  </div>
+                  <div class="item-description">
+                    <ion-icon class="description-icon" name="people"></ion-icon>
+                    <div class="description-text one-line">
+                      <span *ngFor="let user of match.conferme">
+                        <img src="{{user.Picture}}" style="height:15px;width:15px;border-radius:8px;">
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <ion-icon class="item-icon" name="arrow-forward"></ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+</ion-content>

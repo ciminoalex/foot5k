@@ -6,6 +6,7 @@ import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy';
 
 import { WalkthroughPage } from '../walkthrough/walkthrough';
+import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 
 import 'rxjs/Rx';
 
@@ -19,6 +20,10 @@ import { AppRate } from '@ionic-native/app-rate';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Crop } from '@ionic-native/crop';
 
+import { UsersProvider } from '../../providers/users/users';
+import { LocalInfoProvider } from '../../providers/local-info/local-info';
+import { UserObject } from '../../providers/users/users.model';
+
 @Component({
   selector: 'settings-page',
   templateUrl: 'settings.html'
@@ -27,10 +32,13 @@ export class SettingsPage {
   settingsForm: FormGroup;
   // make WalkthroughPage the root (or first) page
   rootPage: any = WalkthroughPage;
+  homePage: any = TabsNavigationPage;
   loading: any;
 
   profile: ProfileModel = new ProfileModel();
   languages: Array<LanguageModel>;
+
+  public CurrentUser: UserObject;
 
   constructor(
     public nav: NavController,
@@ -42,7 +50,9 @@ export class SettingsPage {
     public appRate: AppRate,
     public imagePicker: ImagePicker,
     public cropService: Crop,
-    public platform: Platform
+    public platform: Platform,
+    public UsersService: UsersProvider,
+    public LocalInfo: LocalInfoProvider
   ) {
     this.loading = this.loadingCtrl.create();
 
@@ -50,29 +60,34 @@ export class SettingsPage {
 
     this.settingsForm = new FormGroup({
       name: new FormControl(),
-      location: new FormControl(),
+      role: new FormControl(),
+      email: new FormControl(),
+      password: new FormControl(),
+      repassword: new FormControl(),
       description: new FormControl(),
       currency: new FormControl(),
       weather: new FormControl(),
       notifications: new FormControl(),
       language: new FormControl()
     });
+
   }
 
   ionViewDidLoad() {
     this.loading.present();
-    this.profileService.getData().then(data => {
-      this.profile.user = data.user;
+    this.UsersService.getUserByID(this.LocalInfo.CurrentUserID).subscribe(data=>{
+      this.CurrentUser = data;
 
       // setValue: With setValue, you assign every form control value at once by passing in a data object whose properties exactly match the form model behind the FormGroup.
       // patchValue: With patchValue, you can assign values to specific controls in a FormGroup by supplying an object of key/value pairs for just the controls of interest.
       // More info: https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#populate-the-form-model-with-_setvalue_-and-_patchvalue_
       this.settingsForm.patchValue({
-        name: data.user.name,
-        location: data.user.location,
-        description: data.user.about,
-        currency: 'dollar',
-        weather: 'fahrenheit',
+        name: this.CurrentUser.NomeCompleto,
+        role: this.CurrentUser.Ruolo,
+        description: this.CurrentUser.description,
+        email: this.CurrentUser.Email,
+        password: '',
+        repassword: '',
         notifications: true,
         language: this.languages[0]
       });
@@ -83,6 +98,7 @@ export class SettingsPage {
         this.setLanguage(lang);
       });
     });
+      
   }
 
   logout() {
@@ -119,6 +135,20 @@ export class SettingsPage {
     };
 
     this.appRate.promptForRating(true);
+  }
+
+  updateUser(){
+    var id:string = this.LocalInfo.CurrentUserID;
+    var name:string = this.settingsForm.controls.name.value;
+    var role:string = this.settingsForm.controls.role.value;
+    var description:string = this.settingsForm.controls.description.value;
+
+    this.UsersService.updateUser(id,name,role,description).subscribe(data=>{
+      this.UsersService.getUserByID(id).subscribe(data=>{
+        this.LocalInfo.CurrentUserObj = data;
+        this.nav.setRoot(this.homePage);
+      });
+    });
   }
 
   openImagePicker(){
