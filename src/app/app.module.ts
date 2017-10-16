@@ -29,6 +29,7 @@ import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
 import { FormValidationsPage } from '../pages/form-validations/form-validations';
 import { HomePage } from '../pages/home/home';
+import { MatchViewPage } from '../pages/match-view/match-view';
 
 import { PreloadImage } from '../components/preload-image/preload-image';
 import { BackgroundImage } from '../components/background-image/background-image';
@@ -123,7 +124,8 @@ export function createTranslateLoader(http: Http) {
 		FormValidationsPage,
     VideoPlaylistPage,
     HomePage,
-
+    MatchViewPage,
+    
     PreloadImage,
     BackgroundImage,
     ShowHideContainer,
@@ -183,7 +185,8 @@ export function createTranslateLoader(http: Http) {
 		AdsPage,
 		FormValidationsPage,
     VideoPlaylistPage,
-    HomePage
+    HomePage,
+    MatchViewPage
   ],
   providers: [
     FeedService,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, App } from 'ionic-angular';
 
 import { UsersProvider } from '../../providers/users/users';
 import { LocalInfoProvider } from '../../providers/local-info/local-info';
@@ -7,6 +7,7 @@ import { UserObject } from '../../providers/users/users.model';
 
 import { WalkthroughPage } from '../walkthrough/walkthrough';
 import { SettingsPage } from '../settings/settings';
+import { MatchViewPage } from '../match-view/match-view';
 
 /**
  * Generated class for the HomePage page.
@@ -24,9 +25,12 @@ export class HomePage {
 
   rootPage: any = WalkthroughPage;
   settingPage: any = SettingsPage;
+  matchViewPage: any = MatchViewPage;
   CurrentUser: UserObject = null;
   
   constructor(
+      public menu: MenuController,
+      public app: App,
       public navCtrl: NavController,
       public navParams: NavParams,
       public UsersService: UsersProvider,
@@ -48,9 +52,18 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
   }
 
+  goToMatch(match:any)
+  {
+    console.log(match);
+      // close the menu when clicking a link from the menu
+      this.menu.close();
+      this.app.getRootNav().push(MatchViewPage);
+    }
 
-  goToSettings(){
-    this.navCtrl.push(this.settingPage);
+  goToSettings() {
+    // close the menu when clicking a link from the menu
+    this.menu.close();
+    this.app.getRootNav().push(SettingsPage);
   }
 
   onSegmentChanged(segmentButton: any) {

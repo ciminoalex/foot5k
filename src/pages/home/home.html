@@ -69,20 +69,18 @@
   <div>
     <div>
       <ion-list class="schedule-list">
-        <ion-item class="schedule-item" *ngFor="let match of CurrentUser.MatchesALL">
+        <ion-item class="schedule-item" *ngFor="let match of CurrentUser.MatchesALL" (click)="goToMatch(match.id)">
           <ion-row>
             <ion-col width-20 class="schedule-date">
               <h2 class="schedule-day">{{match.data | date:'dd'}}</h2>
               <h3 class="schedule-month">{{match.data | date:'MMM'}}</h3>
-              <h4 class="schedule-time">{{match.ora | slice:0:5}}</h4>
             </ion-col>
             <ion-col width-80 class="schedule-data">
               <div class="data-item">
                 <div class="item-content">
-                  <h2 class="item-title one-line">{{match.campo}}</h2>
                   <div class="item-description">
                     <ion-icon class="description-icon" name="clock"></ion-icon>
-                    <p class="description-text">{{match.data}}</p>
+                    <p class="description-text">{{match.ora | slice:0:5}} | {{match.campo}}</p>
                   </div>
                   <div class="item-description">
                     <ion-icon class="description-icon" name="people"></ion-icon>
@@ -93,7 +91,7 @@
                     </div>
                   </div>
                 </div>
-                <ion-icon class="item-icon" name="arrow-forward"></ion-icon>
+                <ion-icon class="item-icon" name="checkmark" green></ion-icon>
               </div>
             </ion-col>
           </ion-row>
