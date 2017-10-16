@@ -16,7 +16,6 @@ import { GlobalVars } from '../../components/global-variables';
 export class UsersProvider {
 
   constructor(public http: Http, public global_vars: GlobalVars) {
-    console.log('Hello UsersProvider Provider');
   }
 
   CurrentUser: UserObject;

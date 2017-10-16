@@ -7,12 +7,63 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>match-view</ion-title>
+    <ion-title>{{CurrentMatch?.ora | slice:0:5}} | {{CurrentMatch?.campo}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="match-content">
+  <div class="match-details">
+    <ion-row wrap class="match-data-row">
+      <ion-col no-padding width-33>
+        Campo:
+      </ion-col>
+      <ion-col no-padding width-66>
+        {{CurrentMatch?.campo}}
+      </ion-col>
+    </ion-row>
+    <ion-row wrap class="match-data-row">
+      <ion-col no-padding width-33>
+        Data:
+      </ion-col>
+      <ion-col no-padding width-66>
+        {{CurrentMatch?.data}}
+      </ion-col>
+    </ion-row>
+    <ion-row wrap class="match-data-row">
+      <ion-col no-padding width-33>
+        Orario:
+      </ion-col>
+      <ion-col no-padding width-66>
+        {{CurrentMatch?.ora}} - {{CurrentMatch?.ora_a}}
+      </ion-col>
+    </ion-row>
+    <ion-row wrap class="match-data-row">
+      <ion-col no-padding width-33>
+        Organizzatore:
+      </ion-col>
+      <ion-col no-padding width-66>
+          <img src="{{CurrentMatch?.owner?.Picture}}" style="height:15px;width:15px;border-radius:8px;margin-bottom: -2px;">
+          {{CurrentMatch?.owner?.NomeCompleto}}
+        <ion-icon class="owner-icon" name="arrow-dropright" green></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row wrap class="match-data-row">
+        <ion-col no-padding width-33>
+          Conferme:
+        </ion-col>
+        <ion-col no-padding width-66>
+          {{CurrentMatch?.conferme_num}}/{{CurrentMatch?.giocatori}}
+        </ion-col>
+      </ion-row>
+      <ion-row wrap class="match-data-row">
+      <ion-col no-padding width-100>
+        <span *ngFor="let user of CurrentMatch?.conferme" style="margin:auto;">
+          <img src="{{user.Picture}}" style="height:25px;width:25px;border-radius:12px;">
+        </span>
+      </ion-col>
+    </ion-row>
+  </div>
 
 </ion-content>

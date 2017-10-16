@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, App, LoadingController } from 'ionic-angular';
 
 import { UsersProvider } from '../../providers/users/users';
 import { LocalInfoProvider } from '../../providers/local-info/local-info';
@@ -27,29 +27,33 @@ export class HomePage {
   settingPage: any = SettingsPage;
   matchViewPage: any = MatchViewPage;
   CurrentUser: UserObject = null;
+  loading: any;
   
   constructor(
       public menu: MenuController,
       public app: App,
       public navCtrl: NavController,
       public navParams: NavParams,
+      public loadingCtrl: LoadingController,
       public UsersService: UsersProvider,
       public LocalInfo: LocalInfoProvider
       ) {
 
+        this.loading = this.loadingCtrl.create();
+        this.loading.present();
+        
         this.CurrentUser = this.LocalInfo.CurrentUserObj;
-
+    
+        this.loading.dismiss();
+        
         if(this.CurrentUser==null)
         {
           this.navCtrl.setRoot(this.rootPage);
         }
-
-        console.log(this.CurrentUser.Matches)
-
+        
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
   }
 
   goToMatch(match:any)
