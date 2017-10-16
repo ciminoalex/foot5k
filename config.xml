@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.startapplabs.ion2FullApp.elite" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>ion2-FullApp ELITE</name>
-    <description>The Best Ionic 2 Starter app - ELITE version</description>
-    <author email="hi@ionicthemes.com" href="https://ionicthemes.com/">Ionic Themes</author>
+<widget id="com.ad.foot5k" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Foot5k</name>
+    <description>Organizza le tue partite di calcetto con Foot5K</description>
+    <author email="cimino.alex@gmail.com" href="http://www.foot5k.com/">Foot5K.com</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
