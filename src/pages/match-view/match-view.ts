@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { UsersProvider } from '../../providers/users/users';
+import { LocalInfoProvider } from '../../providers/local-info/local-info';
+import { UserObject } from '../../providers/users/users.model';
+
 /**
  * Generated class for the MatchViewPage page.
  *
@@ -15,11 +19,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MatchViewPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  CurrentUser: UserObject = null;
+  
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public UsersService: UsersProvider,
+    public LocalInfo: LocalInfoProvider
+    ) {
+
+      this.LocalInfo.CurrentMatchID = this.navParams.get('matchId');
+      console.log(this.LocalInfo.CurrentMatchID);
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MatchViewPage');
+    //console.log('ionViewDidLoad MatchViewPage');
   }
 
 }

@@ -57,7 +57,7 @@ export class HomePage {
     console.log(match);
       // close the menu when clicking a link from the menu
       this.menu.close();
-      this.app.getRootNav().push(MatchViewPage);
+      this.app.getRootNav().push(MatchViewPage, {matchId: match});
     }
 
   goToSettings() {
