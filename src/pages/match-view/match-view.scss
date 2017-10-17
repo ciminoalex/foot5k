@@ -10,6 +10,32 @@ page-match-view {
                 text-align: center;
             }
 
+            .status-2{
+                .item-inner{
+                    color:#FFF;
+                    background-color: #4CAF50;
+                    border-radius: 5px;
+                    margin: 5px;
+                }
+            }
+
+            button[ion-fab] {
+                overflow: visible;
+                position: relative;
+        
+                ion-label {
+                    position: absolute;
+                    top: -8px;
+                    right: 40px;
+        
+                    color: white;
+                    background-color: rgba(0,0,0,0.7);
+                    line-height: 24px;
+                    padding: 4px 8px;
+                    border-radius: 4px;
+                }
+            }
+
             .match-details
             {
                 @include element-shadow();

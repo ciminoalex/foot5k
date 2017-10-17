@@ -194,6 +194,15 @@ page-home {
 				background-color: transparent;
 				border: none;
 
+                .schedule-match-group{
+                    position: absolute;
+                    background-color: orange;
+                    height: 5px;
+                    width: 100%;
+                    margin-left: -14px;
+                    margin-top: -12px;
+                }
+
 				.item-inner
 				{
 					border: none;
@@ -235,7 +244,8 @@ page-home {
 				{
 					border-radius: 6px;
 					background-color: $white;
-					padding: 12px 14px;
+                    padding: 12px 14px;
+                    overflow: hidden;
 					@include element-shadow();
 
 					.data-item

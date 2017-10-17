@@ -26,6 +26,7 @@ export class MatchViewPage {
   loading: any;
   CurrentMatchStatusText: string = 'Vuoi partecipare a questa partita?';
   CurrentMatchStatusValue: number = -1;
+  CurrentMatchStatusClass: string = 'match-action';
   
   
   constructor(
@@ -67,10 +68,12 @@ export class MatchViewPage {
       this.MatchesService.getaPlayerMatchStatus(this.LocalInfo.CurrentMatchID,this.LocalInfo.CurrentUserID).subscribe(data=>{
         this.CurrentMatchPlayerStatus = data;
 
+        this.CurrentMatchStatusClass = "match-action";
         if(this.CurrentMatchPlayerStatus[0].status=='2')
         {
           this.CurrentMatchStatusText = 'Ottimo! Stai partecipando alla partita.'
           this.CurrentMatchStatusValue = 2;
+          this.CurrentMatchStatusClass = "match-action status-2";
         }
         if(this.CurrentMatchPlayerStatus[0].status!='2')
         {
