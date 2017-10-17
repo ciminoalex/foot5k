@@ -8,6 +8,11 @@
 
   <ion-navbar>
     <ion-title>{{CurrentMatch?.ora | slice:0:5}} | {{CurrentMatch?.campo}}</ion-title>
+    <ion-buttons end>
+      <button>
+        SHARE
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -55,24 +60,47 @@
       <ion-col no-padding class="field-value" width-66>
         {{CurrentMatch?.conferme_num}}/{{CurrentMatch?.giocatori}}
         <span class="players-bar" style="float:right;">
-            <span *ngFor="let user of CurrentMatch?.conferme" style="margin:auto;">
-              <img src="{{user.Picture}}" style="height:12px;width:12px;border-radius:5px;">
-            </span>
+          <span *ngFor="let user of CurrentMatch?.conferme" style="margin:auto;">
+            <img src="{{user.Picture}}" style="height:12px;width:12px;border-radius:5px;">
+          </span>
         </span>
       </ion-col>
     </ion-row>
   </div>
 
- <ion-item-group>
-      <ion-item-divider class="players-divider">{{ 'CONFIRMED' | translate }}</ion-item-divider>
-      <ion-item class="players-item" *ngFor="let user of CurrentMatch?.conferme">
-        <ion-avatar item-left>
-          <preload-image class="user-image" [ratio]="{w:1, h:1}" [src]="user.Picture"></preload-image>
-        </ion-avatar>
-        <h2 class="item-title">{{user.NomeCompleto}}</h2>
-        <ion-note class="item-time" item-right>{{user.Ruolo}}</ion-note>
-      </ion-item>
-      <ion-item-divider class="players-divider">{{ 'WAITING' | translate }}</ion-item-divider>
-    </ion-item-group>
-    
+  <ion-item class="match-action">
+    <ion-row class="match-action-row">
+      <ion-col padding width-100>
+        <div>{{CurrentMatchStatusText}}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="match-action-row">
+      <ion-col padding width-100 *ngIf="CurrentMatchStatusValue != '2'">
+        <button ion-button width-100 (click)="matchAction('2')" icon-start color="theme-color-1" style="width:100%">
+          <ion-icon name="checkmark"></ion-icon>
+          {{'ACCEPT_MATCH' | translate}}
+        </button>
+      </ion-col>
+      <ion-col padding width-100 *ngIf="CurrentMatchStatusValue == '2'">
+        <button ion-button width-100 (click)="matchAction('0')" icon-start color="danger" style="width:100%">
+          <ion-icon name="close"></ion-icon>
+          {{'REFUSE_MATCH' | translate}}
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+
+
+  <ion-item-group>
+    <ion-item-divider class="players-divider">{{ 'CONFIRMED' | translate }}</ion-item-divider>
+    <ion-item class="players-item" *ngFor="let user of CurrentMatch?.conferme">
+      <ion-avatar item-left>
+        <preload-image class="user-image" [ratio]="{w:1, h:1}" [src]="user.Picture"></preload-image>
+      </ion-avatar>
+      <h2 class="item-title">{{user.NomeCompleto}}</h2>
+      <ion-note class="item-time" item-right>{{user.Ruolo}}</ion-note>
+    </ion-item>
+    <ion-item-divider class="players-divider">{{ 'WAITING' | translate }}</ion-item-divider>
+  </ion-item-group>
+
 </ion-content>

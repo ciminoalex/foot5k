@@ -3,10 +3,19 @@ page-match-view {
         {
             background-color: color($colors, background, base);
 
+
+            .match-action .item-inner {
+                border:none;
+                font-size: 14px;
+                text-align: center;
+            }
+
             .match-details
             {
                 @include element-shadow();
                 background-color: $white;
+                margin: 5px;
+                border: 1px solid rgba(239, 239, 239, 0.85);
 
                 .match-data-row
                 {
@@ -15,7 +24,7 @@ page-match-view {
 
                     @include align-items(center);
    
-                    .field-name, .field-name{
+                    .field-name, .field-value{
                         font-size: 12px;
                         color: rgb(88, 88, 88);
                     }
@@ -184,16 +193,17 @@ page-match-view {
     
                 &:not(:first-child)
                 {
-                    padding-top: 30px;
+                    //padding-top: 30px;
                 }
             }
     
             .players-item
             {
+                width: auto;
                 padding-left: 12px;
                 padding-right: 12px;
                 padding-top: 5px;
-                padding-bottom: 5px;
+                padding-bottom: 3px;
 
                 margin:5px;
                 
@@ -219,7 +229,7 @@ page-match-view {
                     padding: 0px;
                     padding-left: 12px;
                     border: none;
-                    margin-top: 8px;
+                    padding-top: 10px;
     
                     ion-label {
                         margin: 0px;

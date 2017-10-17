@@ -38,6 +38,8 @@ export class LoginPage {
     public LocalInfo: LocalInfoProvider ) {
     this.main_page = { component: TabsNavigationPage };
 
+    this.loading = this.loadingCtrl.create();
+    
     this.login = new FormGroup({
       email: new FormControl('info@smartylife.net', Validators.required),
       password: new FormControl('test', Validators.required)
@@ -45,10 +47,9 @@ export class LoginPage {
   }
 
   doLogin(){
-    this.loading = this.loadingCtrl.create();
+    this.loading.present();
     
     this.UsersService.logInMail(this.login.controls.email.value,this.login.controls.password.value).subscribe(data=>{
-      this.loading.dismiss();
       this.user = data; 
       console.log(this.user)
       if(this.user==null)
@@ -67,6 +68,7 @@ export class LoginPage {
         this.LocalInfo.CurrentUserID = this.user.ID;
 
         this.UsersService.getUserByID(this.LocalInfo.CurrentUserID).subscribe(data=>{
+          this.loading.dismiss();
           this.LocalInfo.CurrentUserObj = data;
           this.nav.setRoot(this.main_page.component);
         });

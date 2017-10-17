@@ -22,6 +22,16 @@ export class MatchesProvider {
     console.log(this.global_vars.json_url + '?action=match&mid='+ID+'');
     return this.http.get(this.global_vars.json_url + '?action=match&mid='+ID+'').map(res => res.json());
   }
+  
+  getaPlayerMatchStatus(ID:string, pID:string): Observable<any> {
+    console.log(this.global_vars.json_url + '?action=mymatchstatus&mid='+ID+'&uid='+pID+'');
+    return this.http.get(this.global_vars.json_url + '?action=mymatchstatus&mid='+ID+'&uid='+pID+'').map(res => res.json());
+  }
+
+  matchAction(ID:string, pID:string, Value:string): Observable<any> {
+    console.log(this.global_vars.json_url + '?action=matchaction&mid='+ID+'&uid='+pID+'&value='+Value);
+    return this.http.get(this.global_vars.json_url + '?action=matchaction&mid='+ID+'&uid='+pID+'&value='+Value).map(res => res.json());
+  }
 
 
 }

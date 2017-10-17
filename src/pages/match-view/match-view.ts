@@ -22,7 +22,10 @@ import { MatchObject } from '../../providers/matches/matches.model';
 export class MatchViewPage {
 
   CurrentMatch: MatchObject;
+  CurrentMatchPlayerStatus: any;
   loading: any;
+  CurrentMatchStatusText: string = 'Vuoi partecipare a questa partita?';
+  CurrentMatchStatusValue: number = -1;
   
   
   constructor(
@@ -42,16 +45,43 @@ export class MatchViewPage {
   }
 
   ionViewDidLoad() {
+    this.loading = this.loadingCtrl.create();
     this.loading.present();
-    
-    this.MatchesService.getaMatchByID(this.LocalInfo.CurrentMatchID).subscribe(data=>{
-      this.CurrentMatch = data;
-      console.log(this.CurrentMatch);
 
-      this.loading.dismiss();
-    });
-    //console.log('ionViewDidLoad MatchViewPage');
+    this.refreshData();
 
+   //console.log('ionViewDidLoad MatchViewPage');
   }
 
+  matchAction(value:string){
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
+    this.MatchesService.matchAction(this.LocalInfo.CurrentMatchID, this.LocalInfo.CurrentUserID, value).subscribe(data=>{
+      this.refreshData();
+    });
+  }
+
+  refreshData(){
+    this.MatchesService.getaMatchByID(this.LocalInfo.CurrentMatchID).subscribe(data=>{
+      this.CurrentMatch = data;
+      this.MatchesService.getaPlayerMatchStatus(this.LocalInfo.CurrentMatchID,this.LocalInfo.CurrentUserID).subscribe(data=>{
+        this.CurrentMatchPlayerStatus = data;
+
+        if(this.CurrentMatchPlayerStatus[0].status=='2')
+        {
+          this.CurrentMatchStatusText = 'Ottimo! Stai partecipando alla partita.'
+          this.CurrentMatchStatusValue = 2;
+        }
+        if(this.CurrentMatchPlayerStatus[0].status!='2')
+        {
+          this.CurrentMatchStatusText = 'Non stai partecipando alla partita. Vuoi partecpare?'
+          this.CurrentMatchStatusValue = 0;
+        }
+
+        console.log(this.CurrentMatchPlayerStatus[0]);
+        this.loading.dismiss();
+      });
+    });
+  };
+  
 }
