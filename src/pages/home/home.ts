@@ -82,7 +82,7 @@ export class HomePage {
 
   createNewMatch(){
     this.menu.close();
-    this.app.getRootNav().push(MatchEditPage);
+    this.app.getRootNav().push(MatchEditPage, {matchId: -1});
   }
 
 

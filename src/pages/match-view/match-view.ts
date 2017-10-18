@@ -65,7 +65,7 @@ export class MatchViewPage {
   }
 
   editMatch(){
-    this.app.getRootNav().push(MatchEditPage);
+    this.app.getRootNav().push(MatchEditPage, {matchId: this.LocalInfo.CurrentMatchID});
   }
 
   refreshData(){

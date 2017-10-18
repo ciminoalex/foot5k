@@ -7,17 +7,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>match-edit</ion-title>
-  </ion-navbar>
+      <ion-title>{{CurrentMatch?.ora | slice:0:5}} | {{CurrentMatch?.campo}}</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="forms-examples-content">
   <div class="event-example-view">
-    <form class="sample-form event-form" [formGroup]="event_form" (ngSubmit)="createEvent()">
+    <form class="sample-form event-form" [formGroup]="event_form" (ngSubmit)="saveEvent()">
       <section class="form-section">
-        <h2 class="section-title">{{'ADD_MATCH' | translate}}</h2>
+        <h2 class="section-title">{{formStatusCaption}}</h2>
         <ion-item>
           <ion-input type="text" placeholder="Descrizione partita" formControlName="title"></ion-input>
         </ion-item>
@@ -57,7 +57,7 @@
         </ion-row>
       </section>
         <section class="form-section">
-        <button ion-button block class="form-action-button create-event-button" type="submit" [disabled]="!event_form.valid">Done!</button>
+        <button ion-button block class="form-action-button create-event-button" type="submit" [disabled]="!event_form.valid">{{'DONE' | translate}}</button>
       </section>
     </form>
   </div>
