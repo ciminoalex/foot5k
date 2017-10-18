@@ -17,6 +17,17 @@
 </ion-header>
 
 <ion-content class="profile-content">
+
+
+  <ion-fab right bottom>
+      <button ion-fab color="secondary"><ion-icon name="arrow-dropup"></ion-icon></button>
+      <ion-fab-list side="top">
+          <button ion-fab (click)="createNewMatch()"><ion-icon name="football"></ion-icon></button>
+        </ion-fab-list>
+  </ion-fab>
+
+  
+
   <div class="user-details">
     <ion-row class="user-main-data-row">
       <ion-col no-padding width-33>

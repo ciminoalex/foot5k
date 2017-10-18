@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, App  } from 'ionic-angular';
 
 import { UsersProvider } from '../../providers/users/users';
 import { MatchesProvider } from '../../providers/matches/matches';
 import { LocalInfoProvider } from '../../providers/local-info/local-info';
-import { UserObject } from '../../providers/users/users.model';
 import { MatchObject } from '../../providers/matches/matches.model';
+
+import { MatchEditPage } from '../match-edit/match-edit';
 
 /**
  * Generated class for the MatchViewPage page.
@@ -35,8 +36,9 @@ export class MatchViewPage {
     public UsersService: UsersProvider,
     public loadingCtrl: LoadingController,
     public MatchesService: MatchesProvider,
-    public LocalInfo: LocalInfoProvider
-    ) {
+    public LocalInfo: LocalInfoProvider,
+    public app: App
+  ) {
 
       this.loading = this.loadingCtrl.create();
       
@@ -60,6 +62,10 @@ export class MatchViewPage {
     this.MatchesService.matchAction(this.LocalInfo.CurrentMatchID, this.LocalInfo.CurrentUserID, value).subscribe(data=>{
       this.refreshData();
     });
+  }
+
+  editMatch(){
+    this.app.getRootNav().push(MatchEditPage);
   }
 
   refreshData(){

@@ -8,8 +8,8 @@
   <ion-navbar>
     <ion-title>{{CurrentMatch?.ora | slice:0:5}} | {{CurrentMatch?.campo}}</ion-title>
     <ion-buttons end>
-        <button ion-button>
-          <ion-icon name="share"></ion-icon>
+        <button ion-button (click)="editMatch()">
+          <ion-icon name="create"></ion-icon>
         </button>
       </ion-buttons>
   </ion-navbar>
@@ -19,10 +19,10 @@
 <ion-content class="match-content">
 
   <ion-fab right bottom>
-      <button ion-fab><ion-icon name="arrow-dropup"></ion-icon></button>
+      <button ion-fab color="secondary"><ion-icon name="arrow-dropup"></ion-icon></button>
       <ion-fab-list side="top">
           <button ion-fab><ion-icon name="share"></ion-icon> <ion-label>Condividi</ion-label></button>
-          <button ion-fab><ion-icon name="body"></ion-icon> <ion-label>Aggiungi ospite</ion-label></button>
+          <button ion-fab><ion-icon name="person-add"></ion-icon> <ion-label>Aggiungi ospite</ion-label></button>
         </ion-fab-list>
   </ion-fab>
 

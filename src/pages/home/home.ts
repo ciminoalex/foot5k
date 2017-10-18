@@ -8,6 +8,7 @@ import { UserObject } from '../../providers/users/users.model';
 import { WalkthroughPage } from '../walkthrough/walkthrough';
 import { SettingsPage } from '../settings/settings';
 import { MatchViewPage } from '../match-view/match-view';
+import { MatchEditPage } from '../match-edit/match-edit';
 
 /**
  * Generated class for the HomePage page.
@@ -26,6 +27,7 @@ export class HomePage {
   rootPage: any = WalkthroughPage;
   settingPage: any = SettingsPage;
   matchViewPage: any = MatchViewPage;
+  matchEditPage: any = MatchEditPage;
   CurrentUser: UserObject = null;
   loading: any;
   
@@ -76,6 +78,11 @@ export class HomePage {
 
   onSegmentSelected(segmentButton: any) {
     console.log('Segment selected', segmentButton);
+  }
+
+  createNewMatch(){
+    this.menu.close();
+    this.app.getRootNav().push(MatchEditPage);
   }
 
 

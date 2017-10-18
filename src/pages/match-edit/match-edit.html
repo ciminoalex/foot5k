@@ -1,0 +1,64 @@
+<!--
+  Generated template for the MatchEditPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>match-edit</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="forms-examples-content">
+  <div class="event-example-view">
+    <form class="sample-form event-form" [formGroup]="event_form" (ngSubmit)="createEvent()">
+      <section class="form-section">
+        <h2 class="section-title">{{'ADD_MATCH' | translate}}</h2>
+        <ion-item>
+          <ion-input type="text" placeholder="Descrizione partita" formControlName="title"></ion-input>
+        </ion-item>
+        <ion-item icon-right>
+          <ion-input type="text" placeholder="Campo" formControlName="location"></ion-input>
+          <ion-icon name="navigate" item-right></ion-icon>
+        </ion-item>
+        <ion-row no-padding class="multi-input-row">
+          <ion-col no-padding width-100>
+            <ion-item class="multi-input time-item">
+              <ion-label floating>{{'DATE' | translate }}</ion-label>
+              <ion-datetime formControlName="date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row no-padding class="multi-input-row">
+          <ion-col no-padding width-50>
+            <ion-item class="multi-input time-item">
+              <ion-label floating>{{'FROM_TIME' | translate }}</ion-label>
+              <ion-datetime formControlName="from_time" displayFormat="HH mm" pickerFormat="HH mm"></ion-datetime>
+            </ion-item>
+          </ion-col>
+          <ion-col no-padding width-50>
+            <ion-item class="multi-input time-item">
+              <ion-label floating>{{'TO_TIME' | translate }}</ion-label>
+              <ion-datetime formControlName="to_time" displayFormat="HH mm" pickerFormat="HH mm"></ion-datetime>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row no-padding class="multi-input-row">
+          <ion-col no-padding width-100>
+            <ion-item class="multi-input time-item">
+              <ion-label floating>{{'PLAYERS' | translate }}</ion-label>
+              <ion-input type="number" placeholder="10" formControlName="players"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </section>
+        <section class="form-section">
+        <button ion-button block class="form-action-button create-event-button" type="submit" [disabled]="!event_form.valid">Done!</button>
+      </section>
+    </form>
+  </div>
+</ion-content>
