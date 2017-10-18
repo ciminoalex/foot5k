@@ -4,19 +4,32 @@ page-match-view {
             background-color: color($colors, background, base);
 
 
+            .match-action {
+                //border: 1px solid $theme-color-2;
+                display: block;
+                //border-radius: 10px;
+                margin: 5px;
+                color:$theme-color-2;
+                background-color: #fff;
+                background-image: url(../assets/images/background-action-orange.png);
+                background-size: cover;
+            }
             .match-action .item-inner {
                 border:none;
                 font-size: 14px;
                 text-align: center;
             }
 
+            .match-action-message {
+                background: rgba(255, 255, 255, 0.66);
+                padding: 10px;
+                border-radius: 5px;
+            }
+
             .status-2{
-                .item-inner{
-                    color:#FFF;
-                    background-color: #4CAF50;
-                    border-radius: 5px;
-                    margin: 5px;
-                }
+                color:$theme-color-1;
+                background-color: #fff;
+                background-image: url(../assets/images/background-action-green.png);
             }
 
             button[ion-fab] {
@@ -51,12 +64,14 @@ page-match-view {
                     @include align-items(center);
    
                     .field-name, .field-value{
-                        font-size: 12px;
+                        font-size: 14px;
                         color: rgb(88, 88, 88);
                     }
 
                     .field-name{
                         font-weight: bold;
+                    }
+                    .field-value{
                     }
 
                     .social-presence-row
