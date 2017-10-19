@@ -33,5 +33,10 @@ export class MatchesProvider {
     return this.http.get(this.global_vars.json_url + '?action=matchaction&mid='+ID+'&uid='+pID+'&value='+Value).map(res => res.json());
   }
 
+  addMatch(date:string, time:string, timeto:string, campo:string, owner:string, players:string, groupid:string): Observable<any> {
+    console.log(this.global_vars.json_url + '?action=addmatch&date='+date+'&time='+timeto+'&campo='+campo+'&owner='+owner+'&type=1&players'+players+'&groupid='+groupid+'&allgroup=1');
+    return this.http.get(this.global_vars.json_url + '?action=addmatch&date='+date+'&time='+timeto+'&campo='+campo+'&owner='+owner+'&type=1&players'+players+'&groupid='+groupid+'&allgroup=1').map(res => res.json());
+  }
+
 
 }

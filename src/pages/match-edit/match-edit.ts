@@ -63,7 +63,14 @@ export class MatchEditPage {
   }
 
   saveEvent(){
-    console.log(this.event_form.value);
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
+
+    if(this.current_match_id==-1){
+        this.MatchesService.addMatch('','','','','','','').subscribe(data=>{
+          this.loading.dismiss();
+        });
+      }
   }
 
   refreshData(){
