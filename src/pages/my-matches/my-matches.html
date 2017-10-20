@@ -1,4 +1,4 @@
-<ion-header class="listing-header">
+<ion-header class="my-matches-header">
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -16,7 +16,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="profile-content">
+<ion-content class="my-matches-content">
 
   <ion-fab right bottom>
       <button ion-fab color="secondary"><ion-icon name="arrow-dropup"></ion-icon></button>
@@ -25,59 +25,10 @@
         </ion-fab-list>
   </ion-fab>
 
-  <div class="user-details">
-    <ion-row class="user-main-data-row">
-      <ion-col no-padding width-33>
-        <preload-image class="user-image" [ratio]="{w:1, h:1}" [(src)]="CurrentUser.Picture" alt="CurrentUser.NomeCompleto" title="CurrentUser.NomeCompleto"></preload-image>
-      </ion-col>
-      <ion-col no-padding>
-        <ion-row class="social-presence-row">
-          <ion-col width-33 class="social-presence-item">
-            <a>
-              <h2 class="social-presence-value">{{CurrentUser.matches_played}}</h2>
-              <h4 class="social-presence-title">{{'PLAYED' | translate }}</h4>
-            </a>
-          </ion-col>
-          <ion-col width-33 class="social-presence-item">
-            <a>
-              <h2 class="social-presence-value">{{CurrentUser.matches_win}}</h2>
-              <h4 class="social-presence-title">{{'WIN' | translate }}</h4>
-            </a>
-          </ion-col>
-          <ion-col width-33 class="social-presence-item">
-            <a>
-              <h2 class="social-presence-value">{{CurrentUser.matches_lost}}</h2>
-              <h4 class="social-presence-title">{{'LOST' | translate }}</h4>
-            </a>
-          </ion-col>
-        </ion-row>
-        <ion-row class="profile-action-row">
-          <ion-col no-padding>
-            <button ion-button block small (click)="goToSettings()">
-              {{'EDIT_PROFILE' | translate}}
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-col>
-    </ion-row>
-    <ion-row wrap class="user-bio-row">
-      <ion-col no-padding width-50>
-        <h2 class="user-name">{{CurrentUser.NomeCompleto}}</h2>
-      </ion-col>
-      <ion-col no-padding width-50>
-        <span class="user-location">{{CurrentUser.Ruolo}}</span>
-      </ion-col>
-      <ion-col no-padding width-100>
-        <p class="user-description">
-          {{CurrentUser.description}}
-        </p>
-      </ion-col>
-    </ion-row>
-  </div>
   <div>
     <div>
       <ion-list class="schedule-list">
-        <ion-item class="schedule-item" *ngFor="let match of this.LocalInfo.CurrentUserObj.MatchesALL" (click)="goToMatch(match.id)">
+        <ion-item class="schedule-item" *ngFor="let match of this.LocalInfo.CurrentUserObj.MyMatches" (click)="goToMatch(match.id)">
           <ion-row>
             <ion-col width-20 class="schedule-date">
               <h2 class="schedule-day">{{match.data | date:'dd'}}</h2>

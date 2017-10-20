@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { HomePage } from '../home/home';
 import { ProfilePage } from '../profile/profile';
-import { NotificationsPage } from '../notifications/notifications';
+import { MyMatchesPage } from '../my-matches/my-matches';
 
 @Component({
   selector: 'tabs-navigation',
@@ -16,6 +16,6 @@ export class TabsNavigationPage {
   constructor() {
     this.tab1Root = HomePage;
     this.tab2Root = ProfilePage;
-    this.tab3Root = NotificationsPage;
+    this.tab3Root = MyMatchesPage;
   }
 }
