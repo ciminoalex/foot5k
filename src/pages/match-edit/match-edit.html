@@ -8,7 +8,12 @@
 
   <ion-navbar>
       <ion-title>{{CurrentMatch?.ora | slice:0:5}} | {{CurrentMatch?.campo}}</ion-title>
-    </ion-navbar>
+      <ion-buttons end>
+          <button ion-button (click)="deleteConfirmation()">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-navbar>
 
 </ion-header>
 
@@ -29,7 +34,7 @@
           <ion-col no-padding width-100>
             <ion-item class="multi-input time-item">
               <ion-label floating>{{'DATE' | translate }}</ion-label>
-              <ion-datetime formControlName="date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+              <ion-datetime formControlName="date" displayFormat="DD/MM/YYYY" pickerFormat="DD-MM-YYYY"></ion-datetime>
             </ion-item>
           </ion-col>
         </ion-row>
