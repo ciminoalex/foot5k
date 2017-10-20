@@ -91,6 +91,11 @@ export class MatchViewPage {
         this.loading.dismiss();
       });
     });
+
+    this.UsersService.getUserByID(this.LocalInfo.CurrentUserID).subscribe(data=>{
+      this.LocalInfo.CurrentUserObj = data;
+    });
+
   };
   
 }
