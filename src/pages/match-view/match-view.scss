@@ -3,7 +3,6 @@ page-match-view {
         {
             background-color: color($colors, background, base);
 
-
             .match-action {
                 //border: 1px solid $theme-color-2;
                 display: block;
@@ -30,23 +29,6 @@ page-match-view {
                 color:$theme-color-1;
                 background-color: #fff;
                 background-image: url(../assets/images/background-action-green.png);
-            }
-
-            button[ion-fab] {
-                overflow: visible;
-                position: relative;
-        
-                ion-label {
-                    position: absolute;
-                    top: -8px;
-                    right: 40px;
-        
-                    color: white;
-                    background-color: rgba(0,0,0,0.7);
-                    line-height: 24px;
-                    padding: 4px 8px;
-                    border-radius: 4px;
-                }
             }
 
             .match-details
