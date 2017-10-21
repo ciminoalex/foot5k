@@ -89,6 +89,7 @@ import { UsersProvider } from '../providers/users/users';
 import { GlobalVars } from '../components/global-variables';
 import { LocalInfoProvider } from '../providers/local-info/local-info';
 import { MatchesProvider } from '../providers/matches/matches';
+import { GroupsProvider } from '../providers/groups/groups';
 
 export function createTranslateLoader(http: Http) {
 	return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -230,7 +231,8 @@ export function createTranslateLoader(http: Http) {
     UsersProvider,
     GlobalVars,
     LocalInfoProvider,
-    MatchesProvider
+    MatchesProvider,
+    GroupsProvider
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
