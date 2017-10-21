@@ -32,6 +32,7 @@ import { HomePage } from '../pages/home/home';
 import { MatchViewPage } from '../pages/match-view/match-view';
 import { MatchEditPage } from '../pages/match-edit/match-edit';
 import { MyMatchesPage } from '../pages/my-matches/my-matches';
+import { GroupsPage } from '../pages/groups/groups';
 
 import { PreloadImage } from '../components/preload-image/preload-image';
 import { BackgroundImage } from '../components/background-image/background-image';
@@ -130,6 +131,7 @@ export function createTranslateLoader(http: Http) {
     MatchViewPage,
     MatchEditPage,
     MyMatchesPage,
+    GroupsPage,
     
     PreloadImage,
     BackgroundImage,
@@ -193,7 +195,8 @@ export function createTranslateLoader(http: Http) {
     HomePage,
     MatchViewPage,
     MatchEditPage,
-    MyMatchesPage
+    MyMatchesPage,
+    GroupsPage
   ],
   providers: [
     FeedService,
