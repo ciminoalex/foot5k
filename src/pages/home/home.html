@@ -31,7 +31,7 @@
         <preload-image class="user-image" [ratio]="{w:1, h:1}" [(src)]="CurrentUser.Picture" alt="CurrentUser.NomeCompleto" title="CurrentUser.NomeCompleto"></preload-image>
       </ion-col>
       <ion-col no-padding>
-        <ion-row class="social-presence-row">
+        <ion-row class="social-presence-row" *ngIf="false">
           <ion-col width-33 class="social-presence-item">
             <a>
               <h2 class="social-presence-value">{{CurrentUser.matches_played}}</h2>
@@ -51,6 +51,16 @@
             </a>
           </ion-col>
         </ion-row>
+        <ion-row wrap class="user-bio-row">
+          <ion-col no-padding width-100>
+            <h2 class="user-name">{{CurrentUser.NomeCompleto}}</h2>
+          </ion-col>
+          <ion-col no-padding width-100>
+            <p class="user-description">
+              {{CurrentUser.description}}
+            </p>
+          </ion-col>
+        </ion-row>
         <ion-row class="profile-action-row">
           <ion-col no-padding>
             <button ion-button block small (click)="goToSettings()">
@@ -58,26 +68,13 @@
             </button>
           </ion-col>
         </ion-row>
-      </ion-col>
-    </ion-row>
-    <ion-row wrap class="user-bio-row">
-      <ion-col no-padding width-50>
-        <h2 class="user-name">{{CurrentUser.NomeCompleto}}</h2>
-      </ion-col>
-      <ion-col no-padding width-50>
-        <span class="user-location">{{CurrentUser.Ruolo}}</span>
-      </ion-col>
-      <ion-col no-padding width-100>
-        <p class="user-description">
-          {{CurrentUser.description}}
-        </p>
-      </ion-col>
+          </ion-col>
     </ion-row>
   </div>
   <div>
     <div>
       <ion-list class="schedule-list">
-        <ion-item class="schedule-item" *ngFor="let match of this.LocalInfo.CurrentUserObj.MatchesALL" (click)="goToMatch(match.id)">
+        <ion-item class="schedule-item" *ngFor="let match of this.LocalInfo.CurrentUserObj.Matches" (click)="goToMatch(match.id)">
           <ion-row>
             <ion-col width-20 class="schedule-date">
               <h2 class="schedule-day">{{match.data | date:'dd'}}</h2>
@@ -100,7 +97,7 @@
                     </div>
                   </div>
                 </div>
-                <ion-icon class="item-icon" name="checkmark" green></ion-icon>
+                <ion-icon class="item-icon" name="checkmark"></ion-icon>
               </div>
             </ion-col>
           </ion-row>

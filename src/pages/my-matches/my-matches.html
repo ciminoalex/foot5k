@@ -25,6 +25,22 @@
         </ion-fab-list>
   </ion-fab>
 
+  <div class="user-details">
+    <ion-row wrap class="user-bio-row">
+      <ion-col no-padding width-50>
+        <h2 class="user-name">{{CurrentUser.NomeCompleto}}</h2>
+      </ion-col>
+      <ion-col no-padding width-50>
+        <span class="user-location">{{CurrentUser.Ruolo}}</span>
+      </ion-col>
+      <ion-col no-padding width-100>
+        <p class="user-description">
+          Di seguito troverai tutte le partite organizzate da te. Potrai tenere sotto controllo le conferme e condividere le partite con i tuoi amici.
+        </p>
+      </ion-col>
+    </ion-row>
+  </div>
+
   <div>
     <div>
       <ion-list class="schedule-list">
@@ -44,6 +60,10 @@
                   </div>
                   <div class="item-description">
                     <ion-icon class="description-icon" name="people"></ion-icon>
+                    <p class="description-text">{{match.conferme_num}} / {{match.giocatori}}</p>
+                  </div>
+                  <div class="item-description">
+                    <ion-icon class="description-icon" name="people"></ion-icon>
                     <div class="description-text one-line">
                       <span *ngFor="let user of match.conferme">
                         <img src="{{user.Picture}}" style="height:15px;width:15px;border-radius:8px;">
@@ -51,7 +71,7 @@
                     </div>
                   </div>
                 </div>
-                <ion-icon class="item-icon" name="checkmark" green></ion-icon>
+                <ion-icon class="item-icon" name="create"></ion-icon>
               </div>
             </ion-col>
           </ion-row>
