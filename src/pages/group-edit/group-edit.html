@@ -1,0 +1,49 @@
+<!--
+  Generated template for the GroupEditPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{CurrentGroup?.name}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="deleteConfirmation()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="forms-group-edit-content">
+
+  <ion-fab right bottom>
+      <button ion-fab color="secondary"><ion-icon name="arrow-dropup"></ion-icon></button>
+      <ion-fab-list side="top">
+          <button ion-fab (click)="shareGroup()"><ion-icon name="share"></ion-icon> <ion-label>Invita nel gruppo</ion-label></button>
+        </ion-fab-list>
+  </ion-fab>
+
+
+  <div class="group-edit-view">
+    <form class="sample-form group-edit" [formGroup]="group_edit_form" (ngSubmit)="saveGroup()">
+      <section class="form-section">
+        <h2 class="section-title">{{formStatusCaption}}</h2>
+        <ion-item>
+          <ion-input type="text" placeholder="Nome gruppo" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Descrizione gruppo" formControlName="descrizione"></ion-input>
+        </ion-item>
+        <ion-item icon-right>
+          <ion-input type="text" placeholder="PASSCODE" formControlName="passcode"></ion-input>
+        </ion-item>
+      </section>
+      <section class="form-section">
+        <button ion-button block class="form-action-button group-save-button" type="submit" [disabled]="!group_edit_form.valid">{{'DONE' | translate}}</button>
+      </section>
+    </form>
+  </div>
+</ion-content>

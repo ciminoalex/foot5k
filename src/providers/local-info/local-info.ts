@@ -14,13 +14,15 @@ export class LocalInfoProvider {
 
   public CurrentUserID: string;
   public CurrentUserObj: UserObject;
-
   public CurrentMatchID: string;
+  public CurrentGroupID: string;
+  public CurrentUserGroups: any[];
   
   constructor(public http: Http) {
     this.CurrentUserID = '';
     this.CurrentUserObj = null;
     this.CurrentMatchID = '';
+    this.CurrentGroupID = '';
   }
 
 }

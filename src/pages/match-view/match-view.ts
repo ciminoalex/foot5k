@@ -5,8 +5,8 @@ import { UsersProvider } from '../../providers/users/users';
 import { MatchesProvider } from '../../providers/matches/matches';
 import { LocalInfoProvider } from '../../providers/local-info/local-info';
 import { MatchObject } from '../../providers/matches/matches.model';
-
 import { MatchEditPage } from '../match-edit/match-edit';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 /**
  * Generated class for the MatchViewPage page.
@@ -37,7 +37,8 @@ export class MatchViewPage {
     public loadingCtrl: LoadingController,
     public MatchesService: MatchesProvider,
     public LocalInfo: LocalInfoProvider,
-    public app: App
+    public app: App,
+    public socialSharing: SocialSharing
   ) {
 
       this.loading = this.loadingCtrl.create();
@@ -97,5 +98,22 @@ export class MatchViewPage {
     });
 
   };
+
+  shareMatch() {
+
+    var title: string = this.CurrentMatch.campo;
+    var description: string = "Prova 1 \n Prova 2 \n Prova 3 \n Prova 4";
+    var thumbnail: string = null;
+    
+
+     this.socialSharing.share(description, title, thumbnail, null)
+     .then(() => {
+       console.log('Success!');
+     })
+     .catch(() => {
+        console.log('Error');
+     });
+    }
   
+
 }

@@ -48,8 +48,6 @@ export class MatchEditPage {
   ) {
 
     this.loading = this.loadingCtrl.create();
-    
-    console.log(new Date().toISOString());
 
     this.event_form = new FormGroup({
       title: new FormControl('-', Validators.required),
