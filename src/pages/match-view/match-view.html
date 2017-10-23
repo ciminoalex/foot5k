@@ -26,31 +26,43 @@
         </ion-fab-list>
   </ion-fab>
 
+  <div>
+    <ion-list class="schedule-list">
+      <ion-item class="schedule-item">
+        <ion-row>
+          <ion-col width-20 class="schedule-date">
+            <h2 class="schedule-day">{{CurrentMatch?.data | date:'dd'}}</h2>
+            <h3 class="schedule-month">{{CurrentMatch?.data | date:'MMM'}}</h3>
+          </ion-col>
+          <ion-col width-80 class="schedule-data">
+            <div class="schedule-match-group"></div>
+            <div class="data-item">
+              <div class="item-content">
+                <div class="item-description">
+                  <ion-icon class="description-icon" name="navigate"></ion-icon>
+                  <p class="description-text">{{CurrentMatch?.campo}}</p>
+                </div>
+                <div class="item-description">
+                  <ion-icon class="description-icon" name="calendar"></ion-icon>
+                  <p class="description-text">{{CurrentMatch?.data | date:'dd'}}/{{CurrentMatch?.data | date:'MM'}}/{{CurrentMatch?.data | date:'yyyy'}}</p>
+                </div>
+                <div class="item-description">
+                  <ion-icon class="description-icon" name="clock"></ion-icon>
+                  <p class="description-text">{{CurrentMatch?.ora | slice:0:5}} - {{CurrentMatch?.ora_a | slice:0:5}}</p>
+                </div>
+                <div class="item-description">
+                  <ion-icon class="description-icon" name="people"></ion-icon>
+                  <p class="description-text">{{CurrentMatch?.conferme_num}}/{{CurrentMatch?.giocatori}}</p>
+                </div>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </div>
+
   <div class="match-details">
-    <ion-row wrap class="match-data-row">
-      <ion-col no-padding class="field-name" width-33>
-        Campo:
-      </ion-col>
-      <ion-col no-padding class="field-value" width-66>
-        {{CurrentMatch?.campo}}
-      </ion-col>
-    </ion-row>
-    <ion-row wrap class="match-data-row">
-      <ion-col no-padding class="field-name" width-33>
-        Data:
-      </ion-col>
-      <ion-col no-padding class="field-value" width-66>
-          {{CurrentMatch?.data | date:'dd'}}/{{CurrentMatch?.data | date:'MM'}}/{{CurrentMatch?.data | date:'yyyy'}}
-      </ion-col>
-    </ion-row>
-    <ion-row wrap class="match-data-row">
-      <ion-col no-padding class="field-name" width-33>
-        Orario:
-      </ion-col>
-      <ion-col no-padding class="field-value" width-66>
-          {{CurrentMatch?.ora | slice:0:5}} - {{CurrentMatch?.ora_a | slice:0:5}}
-      </ion-col>
-    </ion-row>
     <ion-row wrap class="match-data-row">
       <ion-col no-padding class="field-name" width-33>
         Organizzatore:
@@ -69,19 +81,6 @@
           <ion-icon class="owner-icon" name="arrow-dropright" green></ion-icon>
         </ion-col>
       </ion-row>
-      <ion-row wrap class="match-data-row">
-      <ion-col no-padding class="field-name" width-33>
-        Conferme:
-      </ion-col>
-      <ion-col no-padding class="field-value" width-66>
-          <ion-badge item-start>{{CurrentMatch?.conferme_num}}/{{CurrentMatch?.giocatori}}</ion-badge>
-        <span class="players-bar" style="float:right;margin-top: 4px;">
-          <span *ngFor="let user of CurrentMatch?.conferme" style="margin:auto;">
-            <img src="{{user.Picture}}" style="height:12px;width:12px;border-radius:5px;">
-          </span>
-        </span>
-      </ion-col>
-    </ion-row>
   </div>
 
   <ion-item [class]="CurrentMatchStatusClass">
