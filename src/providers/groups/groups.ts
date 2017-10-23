@@ -73,15 +73,21 @@ export class GroupsProvider {
     return this.http.get(this.global_vars.json_url + '?action=ismygroup&gid='+id+'&uid='+uid).map(res => res.json());
   }
 
-  groupAction(id:string, uid:string, action:string): Observable<any> {
-    id = encodeURIComponent(id);
+  enterGroup(uid:string, gid:string, passcode:string): Observable<any> {
     uid = encodeURIComponent(uid);
-    action = encodeURIComponent(action);
-   
-//    console.log(this.global_vars.json_url + '?action=ismygroup&gid='+id+'&uid='+action);
-//    return this.http.get(this.global_vars.json_url + '?action=ismygroup&gid='+id+'&uid='+action).map(res => res.json());
-    return null;
+    gid = encodeURIComponent(gid);
+    passcode = encodeURIComponent(passcode);
+    
+    console.log(this.global_vars.json_url + '?action=entergroup&gid='+gid+'&uid='+uid+'&passcode='+passcode);
+    return this.http.get(this.global_vars.json_url + '?action=entergroup&gid='+gid+'&uid='+uid+'&passcode='+passcode).map(res => res.json());
   }
 
+  leaveGroup(uid:string, gid:string): Observable<any> {
+    uid = encodeURIComponent(uid);
+    gid = encodeURIComponent(gid);
+    
+    console.log(this.global_vars.json_url + '?action=leavegroup&gid='+gid+'&uid='+uid);
+    return this.http.get(this.global_vars.json_url + '?action=leavegroup&gid='+gid+'&uid='+uid).map(res => res.json());
+  }
 
 }

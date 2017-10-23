@@ -30,3 +30,7 @@ button[ion-fab] {
         border-radius: 4px;
     }
 }
+
+[dir="ltr"] .alert-md .alert-wrapper, [dir="rtl"] .alert-md .alert-wrapper {
+    border-radius: 5px;
+}

@@ -36,6 +36,7 @@ page-groups {
 
                         .item-description
 						{
+							width:100%;
 							@include multi-line-ellipsis($list-big-description-font-size);
 						}
 

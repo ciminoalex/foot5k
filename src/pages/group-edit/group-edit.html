@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>{{CurrentGroup?.name}}</ion-title>
+    <ion-title>{{CurrentGroup?.nome}}</ion-title>
     <ion-buttons end>
       <button ion-button (click)="deleteConfirmation()">
         <ion-icon name="trash"></ion-icon>
@@ -35,7 +35,7 @@
           <ion-input type="text" placeholder="Nome gruppo" formControlName="name"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input type="text" placeholder="Descrizione gruppo" formControlName="descrizione"></ion-input>
+          <ion-textarea placeholder="Descrizione gruppo" formControlName="descrizione" rows="5"></ion-textarea>
         </ion-item>
         <ion-item icon-right>
           <ion-input type="text" placeholder="PASSCODE" formControlName="passcode"></ion-input>
