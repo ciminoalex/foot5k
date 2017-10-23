@@ -65,5 +65,23 @@ export class GroupsProvider {
     return this.http.get(this.global_vars.json_url + '?action=deletegroup&gid='+id+'').map(res => res.json());
   }
 
+  isMyGroup(id:string, uid:string): Observable<any> {
+    id = encodeURIComponent(id);
+    uid = encodeURIComponent(uid);
+   
+    console.log(this.global_vars.json_url + '?action=ismygroup&gid='+id+'&uid='+uid);
+    return this.http.get(this.global_vars.json_url + '?action=ismygroup&gid='+id+'&uid='+uid).map(res => res.json());
+  }
+
+  groupAction(id:string, uid:string, action:string): Observable<any> {
+    id = encodeURIComponent(id);
+    uid = encodeURIComponent(uid);
+    action = encodeURIComponent(action);
+   
+//    console.log(this.global_vars.json_url + '?action=ismygroup&gid='+id+'&uid='+action);
+//    return this.http.get(this.global_vars.json_url + '?action=ismygroup&gid='+id+'&uid='+action).map(res => res.json());
+    return null;
+  }
+
 
 }

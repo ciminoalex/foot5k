@@ -42,6 +42,15 @@ export class GroupViewPage {
     console.log(this.current_group_id);
   }
 
+  
+  groupAction(value:string){
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
+    this.GroupsService.groupAction(this.current_group_id, this.LocalInfo.CurrentUserID, value).subscribe(data=>{
+      this.refreshData();
+    });
+  }
+
   ionViewDidLoad() {
     this.loading = this.loadingCtrl.create();
     this.loading.present();
@@ -53,6 +62,9 @@ export class GroupViewPage {
 
     this.GroupsService.getGroup(this.current_group_id).subscribe(data=>{
       this.CurrentGroup = data;
+
+      
+
       this.loading.dismiss();
     });
   };
@@ -62,7 +74,5 @@ export class GroupViewPage {
   }
 
   shareGroup(){}
-
-  groupAction(action:string){}
 
 }
