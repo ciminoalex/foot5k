@@ -54,7 +54,8 @@ export class MatchEditPage {
       date: new FormControl(new Date().toISOString(), Validators.required),
       from_time: new FormControl('00:00', Validators.required),
       to_time: new FormControl('', Validators.required),
-      players: new FormControl(10, Validators.required)
+      players: new FormControl(10, Validators.required),
+      all_groups: new FormControl(true)
     });
 
     this.current_match_id = this.navParams.get('matchId');
@@ -105,7 +106,8 @@ export class MatchEditPage {
     var owner:string = this.LocalInfo.CurrentUserID;
     var players:string = this.event_form.controls.players.value;
     var groupid:string = this.LocalInfo.CurrentUserObj.CurrentGroup;
-
+    var all_groups:boolean = this.event_form.controls.all_groups.value;
+    
     console.log('date:'+date);
     console.log('time:'+time);
     console.log('timeto:'+timeto);
@@ -113,9 +115,10 @@ export class MatchEditPage {
     console.log('owner:'+owner);
     console.log('players:'+players);
     console.log('groupid:'+groupid);
+    console.log('all_groups:'+all_groups);
     
     if(this.current_match_id==-1){
-        this.MatchesService.addMatch(date,time,timeto,campo,owner,players,groupid).subscribe(data=>{
+        this.MatchesService.addMatch(date,time,timeto,campo,owner,players,groupid,all_groups).subscribe(data=>{
           this.UsersService.getUserByID(this.LocalInfo.CurrentUserID).subscribe(data=>{
             this.LocalInfo.CurrentUserObj = data;
             this.loading.dismiss();
@@ -123,7 +126,7 @@ export class MatchEditPage {
           });
         });
       }else{
-        this.MatchesService.updateMatch(this.current_match_id,date,time,timeto,campo,owner,players,groupid).subscribe(data=>{
+        this.MatchesService.updateMatch(this.current_match_id,date,time,timeto,campo,owner,players,groupid,all_groups).subscribe(data=>{
           this.UsersService.getUserByID(this.LocalInfo.CurrentUserID).subscribe(data=>{
             this.LocalInfo.CurrentUserObj = data;
             this.loading.dismiss();
@@ -163,19 +166,19 @@ export class MatchEditPage {
     this.MatchesService.getaMatchByID(this.LocalInfo.CurrentMatchID).subscribe(data=>{
       this.CurrentMatch = data;
 
+      console.log(this.CurrentMatch);
+
       this.event_form = new FormGroup({
-        title: new FormControl('-', Validators.required),
         location: new FormControl(this.CurrentMatch.campo, Validators.required),
         date: new FormControl(this.CurrentMatch.data, Validators.required),
         from_time: new FormControl(this.CurrentMatch.ora, Validators.required),
         to_time: new FormControl(this.CurrentMatch.ora_a, Validators.required),
-        players: new FormControl(this.CurrentMatch.giocatori, Validators.required)
+        players: new FormControl(this.CurrentMatch.giocatori, Validators.required),
+        all_groups: new FormControl((this.CurrentMatch.all_groups=="1"), Validators.required)
       });
 
       this.loading.dismiss();
     });
   };
-    
-
 
 }

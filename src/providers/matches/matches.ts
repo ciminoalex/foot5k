@@ -37,7 +37,7 @@ export class MatchesProvider {
     console.log(this.global_vars.json_url + '?action=deletematch&mid='+id+'');
     return this.http.get(this.global_vars.json_url + '?action=deletematch&mid='+id+'').map(res => res.json());
   }
-  addMatch(date:string, time:string, timeto:string, campo:string, owner:string, players:string, groupid:string): Observable<any> {
+  addMatch(date:string, time:string, timeto:string, campo:string, owner:string, players:string, groupid:string, allgroup:boolean): Observable<any> {
     date = encodeURIComponent(date);
     time = encodeURIComponent(time);
     timeto = encodeURIComponent(timeto);
@@ -45,12 +45,15 @@ export class MatchesProvider {
     owner = encodeURIComponent(owner);
     players = encodeURIComponent(players);
     groupid = encodeURIComponent(groupid);
+    var all_group = "off";
+    if(allgroup)
+      all_group = "on";
     
-    console.log(this.global_vars.json_url + '?action=addmatch&date='+date+'&time='+time+'&timeto='+timeto+'&campo='+campo+'&owner='+owner+'&type=1&players='+players+'&groupid='+groupid+'&allgroup=1');
-    return this.http.get(this.global_vars.json_url + '?action=addmatch&date='+date+'&time='+time+'&timeto='+timeto+'&campo='+campo+'&owner='+owner+'&type=1&players='+players+'&groupid='+groupid+'&allgroup=1').map(res => res.json());
+    console.log(this.global_vars.json_url + '?action=addmatch&date='+date+'&time='+time+'&timeto='+timeto+'&campo='+campo+'&owner='+owner+'&type=1&players='+players+'&groupid='+groupid+'&allgroups='+all_group);
+    return this.http.get(this.global_vars.json_url + '?action=addmatch&date='+date+'&time='+time+'&timeto='+timeto+'&campo='+campo+'&owner='+owner+'&type=1&players='+players+'&groupid='+groupid+'&allgroups='+all_group).map(res => res.json());
   }
 
-  updateMatch(id:string, date:string, time:string, timeto:string, campo:string, owner:string, players:string, groupid:string): Observable<any> {
+  updateMatch(id:string, date:string, time:string, timeto:string, campo:string, owner:string, players:string, groupid:string, allgroup:boolean): Observable<any> {
     date = encodeURIComponent(date);
     time = encodeURIComponent(time);
     timeto = encodeURIComponent(timeto);
@@ -58,9 +61,12 @@ export class MatchesProvider {
     owner = encodeURIComponent(owner);
     players = encodeURIComponent(players);
     groupid = encodeURIComponent(groupid);
+    var all_group = "off";
+    if(allgroup)
+      all_group = "on";
     
-    console.log(this.global_vars.json_url + '?action=updatematch&mid='+id+'&date='+date+'&time='+time+'&timeto='+timeto+'&campo='+campo+'&owner='+owner+'&type=1&players='+players+'&groupid='+groupid+'&allgroup=1');
-    return this.http.get(this.global_vars.json_url + '?action=updatematch&mid='+id+'&date='+date+'&time='+time+'&timeto='+timeto+'&campo='+campo+'&owner='+owner+'&type=1&players='+players+'&groupid='+groupid+'&allgroup=1').map(res => res.json());
+    console.log(this.global_vars.json_url + '?action=updatematch&mid='+id+'&date='+date+'&time='+time+'&timeto='+timeto+'&campo='+campo+'&owner='+owner+'&type=1&players='+players+'&groupid='+groupid+'&allgroups='+all_group);
+    return this.http.get(this.global_vars.json_url + '?action=updatematch&mid='+id+'&date='+date+'&time='+time+'&timeto='+timeto+'&campo='+campo+'&owner='+owner+'&type=1&players='+players+'&groupid='+groupid+'&allgroups='+all_group).map(res => res.json());
   }
 
 

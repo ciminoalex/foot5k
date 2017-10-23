@@ -58,6 +58,13 @@
           </ion-col>
         </ion-row>
       </section>
+      <section class="form-section">
+        <ion-item class="switcher-all-groups">
+          <ion-label>{{'ALL_GROUPS' | translate}}</ion-label>
+          <ion-toggle formControlName="all_groups"></ion-toggle>
+        </ion-item>
+      </section>
+
         <section class="form-section">
         <button ion-button block class="form-action-button create-event-button" type="submit" [disabled]="!event_form.valid">{{'DONE' | translate}}</button>
       </section>

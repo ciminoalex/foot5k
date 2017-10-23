@@ -7,6 +7,27 @@ page-match-edit {
 	{
 		background-color: color($colors, background, base);
 
+		.choose-groups-button
+		{
+			border-radius: 6px;
+			background-color: $white;
+			color: $white-d;
+			margin: 30px 0px;
+			@include element-shadow();
+	
+			.button-inner
+			{
+				@include justify-content(space-between);
+	
+				ion-icon {
+					color: $theme-color-2;
+					font-size: 2.2em;
+				}
+			}
+		}
+	
+	
+
 		.forms-examples-segment
 		{
 			padding: 14px 0px;
@@ -378,6 +399,87 @@ page-match-edit {
 
 
 ion-alert.category-prompt {
+	.alert-wrapper
+	{
+		width: 80%;
+		background-color: $white;
+	}
+
+	.alert-head
+	{
+		padding-bottom: 20px;
+
+		.alert-title
+		{
+			font-size: 2.0rem;
+			line-height: 1.2;
+			letter-spacing: 1.1px;
+			color: $theme-color-2;
+			font-weight: 400;
+		}
+	}
+
+	.alert-message:empty
+	{
+		display: none;
+	}
+
+	.alert-checkbox-group
+	{
+		border: none;
+		padding: 0px 20px;
+
+		.alert-checkbox
+		{
+			margin: 14px 0px;
+
+			.alert-checkbox-label
+			{
+				border-radius: 6px;
+				font-size: 1.4rem;
+				font-weight: 500;
+				letter-spacing: 0.2px;
+				background-color: $white-a;
+				color: $white-d;
+				text-align: center;
+				@include element-shadow();
+			}
+
+			&[aria-checked=true] .alert-checkbox-label
+			{
+				background-color: $theme-color-1;
+				color: $white;
+			}
+
+			.alert-checkbox-icon
+			{
+				display: none;
+			}
+		}
+	}
+
+	.alert-button-group
+	{
+		padding: 14px 0px;
+
+		.alert-button
+		{
+			@include segment-text-styles($white-d);
+			border-top: none;
+		  border-right-color: rgba($white-d, 0.3);
+			font-weight: 400;
+
+			&:last-child
+			{
+			  font-weight: 500;
+				color: $theme-color-2;
+			}
+		}
+	}
+}
+
+
+ion-alert.groups-prompt {
 	.alert-wrapper
 	{
 		width: 80%;
