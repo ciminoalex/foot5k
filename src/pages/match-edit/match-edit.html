@@ -23,9 +23,6 @@
     <form class="sample-form event-form" [formGroup]="event_form" (ngSubmit)="saveEvent()">
       <section class="form-section">
         <h2 class="section-title">{{formStatusCaption}}</h2>
-        <ion-item>
-          <ion-input type="text" placeholder="Descrizione partita" formControlName="title"></ion-input>
-        </ion-item>
         <ion-item icon-right>
           <ion-input type="text" placeholder="Campo" formControlName="location"></ion-input>
           <ion-icon name="navigate" item-right></ion-icon>

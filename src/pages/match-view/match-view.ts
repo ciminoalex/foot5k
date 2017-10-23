@@ -102,9 +102,12 @@ export class MatchViewPage {
   shareMatch() {
 
     var title: string = this.CurrentMatch.campo;
-    var description: string = "Prova 1 \n Prova 2 \n Prova 3 \n Prova 4";
+    var description: string = this.CurrentMatch.campo + "\n";
     var thumbnail: string = null;
-    
+
+    for (let users of this.CurrentMatch.conferme) {
+      description += users.NomeCompleto + "\n";
+    } 
 
      this.socialSharing.share(description, title, thumbnail, null)
      .then(() => {

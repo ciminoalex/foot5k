@@ -50,7 +50,6 @@ export class MatchEditPage {
     this.loading = this.loadingCtrl.create();
 
     this.event_form = new FormGroup({
-      title: new FormControl('-', Validators.required),
       location: new FormControl('', Validators.required),
       date: new FormControl(new Date().toISOString(), Validators.required),
       from_time: new FormControl('00:00', Validators.required),
