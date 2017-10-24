@@ -28,6 +28,8 @@ export class GroupEditPage {
   current_group_id: any;
 
   group_edit_form: FormGroup;
+  radioColorForm: FormGroup;
+  
   loading: any;
 
   formStatusCaption: string = "";
@@ -53,6 +55,11 @@ export class GroupEditPage {
       image: new FormControl(''),
       color: new FormControl('')
     });
+
+    this.radioColorForm = new FormGroup({
+      selected_color: new FormControl('#fc9961')
+    });
+
 
     this.current_group_id = this.navParams.get('groupId');
     console.log(this.current_group_id);
@@ -86,6 +93,8 @@ export class GroupEditPage {
         color: new FormControl(this.CurrentGroup.color)
       });
 
+      this.radioColorForm.controls.selected_color.setValue(this.CurrentGroup.color);
+  
       this.loading.dismiss();
     });
   };
@@ -100,7 +109,7 @@ export class GroupEditPage {
     var descrizione:string = this.group_edit_form.controls.descrizione.value;
     var passcode:string = this.group_edit_form.controls.passcode.value;
     var image:string = "";
-    var color:string = "";
+    var color:string = this.radioColorForm.controls.selected_color.value;;
 
     console.log('name:'+name);
     console.log('descrizione:'+descrizione);

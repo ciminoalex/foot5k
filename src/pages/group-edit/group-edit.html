@@ -20,10 +20,15 @@
 <ion-content class="forms-group-edit-content">
 
   <ion-fab right bottom>
-      <button ion-fab color="secondary"><ion-icon name="arrow-dropup"></ion-icon></button>
-      <ion-fab-list side="top">
-          <button ion-fab (click)="shareGroup()"><ion-icon name="share"></ion-icon> <ion-label>Invita nel gruppo</ion-label></button>
-        </ion-fab-list>
+    <button ion-fab color="secondary">
+      <ion-icon name="arrow-dropup"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="shareGroup()">
+        <ion-icon name="share"></ion-icon>
+        <ion-label>Invita nel gruppo</ion-label>
+      </button>
+    </ion-fab-list>
   </ion-fab>
 
 
@@ -46,4 +51,47 @@
       </section>
     </form>
   </div>
+  <ion-item-divider>{{ 'GROUP_COLOR' | translate }}</ion-item-divider>
+  <form [formGroup]="radioColorForm">
+    <ion-list class="radio-tags color-tags" radio-group formControlName="selected_color">
+      <ion-item class="radio-tag" color-radio="#fc6161">
+        <ion-label>Rosso</ion-label>
+        <ion-radio value="#fc6161"></ion-radio>
+      </ion-item>
+      <ion-item class="radio-tag" color-radio="#fc9961">
+        <ion-label>Arancio</ion-label>
+        <ion-radio value="#fc9961"></ion-radio>
+      </ion-item>
+      <ion-item class="radio-tag" color-radio="#fcea61">
+        <ion-label>Giallo</ion-label>
+        <ion-radio value="#fcea61"></ion-radio>
+      </ion-item>
+      <ion-item class="radio-tag" color-radio="#affc61">
+        <ion-label>Verde</ion-label>
+        <ion-radio value="#affc61"></ion-radio>
+      </ion-item>
+      <ion-item class="radio-tag" color-radio="#61fcc5">
+        <ion-label>Cyano</ion-label>
+        <ion-radio value="#61fcc5"></ion-radio>
+      </ion-item>
+      <ion-item class="radio-tag" color-radio="#fc61ad">
+        <ion-label>Fucsia</ion-label>
+        <ion-radio value="#fc61ad"></ion-radio>
+      </ion-item>
+      <ion-item class="radio-tag" color-radio="#b561fc">
+        <ion-label>Viola</ion-label>
+        <ion-radio value="#b561fc"></ion-radio>
+      </ion-item>
+      <ion-item class="radio-tag" color-radio="#6182fc">
+        <ion-label>Blue</ion-label>
+        <ion-radio value="#6182fc"></ion-radio>
+      </ion-item>
+      <ion-item class="radio-tag" color-radio="#61d1fc">
+        <ion-label>Azzurro</ion-label>
+        <ion-radio value="#61d1fc"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </form>
+
+
 </ion-content>

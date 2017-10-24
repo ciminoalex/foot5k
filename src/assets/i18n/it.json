@@ -142,5 +142,6 @@
   "ENTER_GROUP": "Entra nel gruppo",
   "CONFIRMED": "Conferme",
   "ALL_GROUPS": "Partita accessibile a tutti i gruppi",
-  "SELECT_GROUP": "Seleziona gruppo"
+  "SELECT_GROUP": "Seleziona gruppo",
+  "GROUP_COLOR": "Assegna un colore al gruppo"
 }
