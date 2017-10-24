@@ -7,13 +7,13 @@
 <ion-header>
 
   <ion-navbar>
-      <ion-title>{{CurrentMatch?.ora | slice:0:5}} | {{CurrentMatch?.campo}}</ion-title>
-      <ion-buttons end>
-          <button ion-button (click)="deleteConfirmation()">
-            <ion-icon name="trash"></ion-icon>
-          </button>
-        </ion-buttons>
-      </ion-navbar>
+    <ion-title>{{CurrentMatch?.ora | slice:0:5}} | {{CurrentMatch?.campo}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="deleteConfirmation()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 
 </ion-header>
 
@@ -57,15 +57,20 @@
             </ion-item>
           </ion-col>
         </ion-row>
-      </section>
-      <section class="form-section">
+      <ion-item-divider>{{ 'SELECT_GROUP' | translate }}</ion-item-divider>
+        <ion-list class="radio-group" radio-group formControlName="selected_group">
+          <ion-item class="radio-item"  *ngFor="let group of LocalInfo?.CurrentUserObj?.Groups">
+            <ion-label>{{group.nome}}</ion-label>
+            <ion-radio item-left [value]="group.id"></ion-radio>
+          </ion-item>
+        </ion-list>
         <ion-item class="switcher-all-groups">
           <ion-label>{{'ALL_GROUPS' | translate}}</ion-label>
           <ion-toggle formControlName="all_groups"></ion-toggle>
         </ion-item>
       </section>
 
-        <section class="form-section">
+      <section class="form-section">
         <button ion-button block class="form-action-button create-event-button" type="submit" [disabled]="!event_form.valid">{{'DONE' | translate}}</button>
       </section>
     </form>

@@ -7,6 +7,28 @@ page-match-edit {
 	{
 		background-color: color($colors, background, base);
 
+		.radio-group
+		{
+			//padding-left: 15px;
+			//background-color: $white;
+			//@include element-shadow();
+		
+			@include radio-item-styles($white-d, $white-a, $theme-color-1);
+
+			.radio-item {
+				margin-top:0px !important;
+			}
+
+			.item-radio-checked ion-label {
+				color: green !important;
+			}
+		}
+		
+		.item-divider{
+			margin-top: 10px;
+			border: 1px #eaeaea solid;
+		}
+
 		.choose-groups-button
 		{
 			border-radius: 6px;
@@ -26,8 +48,6 @@ page-match-edit {
 			}
 		}
 	
-	
-
 		.forms-examples-segment
 		{
 			padding: 14px 0px;
@@ -395,7 +415,9 @@ page-match-edit {
 			}
 		}
 	}
+	
 }
+
 
 
 ion-alert.category-prompt {

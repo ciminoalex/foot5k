@@ -25,8 +25,6 @@ import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 export class MatchEditPage {
 
   event_form: FormGroup;
-  categories_checkbox_open: boolean;
-  categories_checkbox_result;
 
   CurrentMatch: MatchObject;
   current_match_id: any;
@@ -49,12 +47,15 @@ export class MatchEditPage {
 
     this.loading = this.loadingCtrl.create();
 
+    console.log(LocalInfo.CurrentUserObj.Groups);
+
     this.event_form = new FormGroup({
       location: new FormControl('', Validators.required),
       date: new FormControl(new Date().toISOString(), Validators.required),
       from_time: new FormControl('00:00', Validators.required),
       to_time: new FormControl('', Validators.required),
       players: new FormControl(10, Validators.required),
+      selected_group: new FormControl(this.LocalInfo.CurrentUserObj.Groups[0].id),
       all_groups: new FormControl(true)
     });
 
@@ -105,7 +106,7 @@ export class MatchEditPage {
     var campo:string = this.event_form.controls.location.value;
     var owner:string = this.LocalInfo.CurrentUserID;
     var players:string = this.event_form.controls.players.value;
-    var groupid:string = this.LocalInfo.CurrentUserObj.CurrentGroup;
+    var groupid:string = this.event_form.controls.selected_group.value;
     var all_groups:boolean = this.event_form.controls.all_groups.value;
     
     console.log('date:'+date);
@@ -168,14 +169,26 @@ export class MatchEditPage {
 
       console.log(this.CurrentMatch);
 
+      this.event_form.controls.date.setValue(this.CurrentMatch.data);
+      this.event_form.controls.from_time.setValue(this.CurrentMatch.ora);
+      this.event_form.controls.to_time.setValue(this.CurrentMatch.ora_a);
+      this.event_form.controls.location.setValue(this.CurrentMatch.campo);
+      this.event_form.controls.players.setValue(this.CurrentMatch.giocatori);
+      this.event_form.controls.all_groups.setValue((this.CurrentMatch.all_groups=="1"));
+      this.event_form.controls.selected_group.setValue(this.CurrentMatch.groups_id);
+      
+/*
       this.event_form = new FormGroup({
         location: new FormControl(this.CurrentMatch.campo, Validators.required),
         date: new FormControl(this.CurrentMatch.data, Validators.required),
         from_time: new FormControl(this.CurrentMatch.ora, Validators.required),
         to_time: new FormControl(this.CurrentMatch.ora_a, Validators.required),
         players: new FormControl(this.CurrentMatch.giocatori, Validators.required),
+        selected_group: new FormControl(this.CurrentMatch.groups_id),
         all_groups: new FormControl((this.CurrentMatch.all_groups=="1"), Validators.required)
-      });
+      });*/
+
+      console.log('XXXX');
 
       this.loading.dismiss();
     });

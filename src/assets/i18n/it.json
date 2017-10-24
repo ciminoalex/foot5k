@@ -141,5 +141,6 @@
   "LEAVE_GROUP": "Lascia il gruppo",
   "ENTER_GROUP": "Entra nel gruppo",
   "CONFIRMED": "Conferme",
-  "ALL_GROUPS": "Partita accessibile a tutti i gruppi"
+  "ALL_GROUPS": "Partita accessibile a tutti i gruppi",
+  "SELECT_GROUP": "Seleziona gruppo"
 }
