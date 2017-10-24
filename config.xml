@@ -22,7 +22,7 @@
     <preference name="FadeSplashScreenDuration" value="300" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenDelay" value="5000" />
     <preference name="TwitterConsumerKey" value="lxYOizP79U8rU9lVT0nLQax8h" />
     <preference name="TwitterConsumerSecret" value="y4ngeuCuwjp5tIziYMdkyWCarz0lZ0HGoDpXuq8qVIYemzABdl" />
     <platform name="android">
