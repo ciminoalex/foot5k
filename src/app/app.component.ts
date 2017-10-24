@@ -6,13 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Observable } from 'rxjs/Observable';
 
 import { TabsNavigationPage } from '../pages/tabs-navigation/tabs-navigation';
-import { FormsPage } from '../pages/forms/forms';
-import { LayoutsPage } from '../pages/layouts/layouts';
 import { WalkthroughPage } from '../pages/walkthrough/walkthrough';
 import { SettingsPage } from '../pages/settings/settings';
-import { FunctionalitiesPage } from '../pages/functionalities/functionalities';
-import { MatchViewPage } from '../pages/match-view/match-view';
-import { GroupViewPage } from '../pages/group-view/group-view';
 
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
@@ -26,12 +21,11 @@ export class MyApp {
 
   // make WalkthroughPage the root (or first) page
   rootPage: any = WalkthroughPage;
-  // rootPage: any = FunctionalitiesPage;
-  // rootPage: any = TabsNavigationPage;
+  //homePage: any = HomePage;
   textDir: string = "ltr";
 
-  pages: Array<{title: any, icon: string, component: any}>;
-  pushPages: Array<{title: any, icon: string, component: any}>;
+  pages: Array<{ title: any, icon: string, component: any }>;
+  pushPages: Array<{ title: any, icon: string, component: any }>;
 
   constructor(
     platform: Platform,
@@ -40,7 +34,7 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public statusBar: StatusBar,
     public translate: TranslateService,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
   ) {
     translate.setDefaultLang('it');
     translate.use('it');
@@ -48,54 +42,43 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.splashScreen.hide();
-      this.statusBar.styleDefault();
 
-/*
-      // Convenience to route with a given nav
-      Deeplinks.routeWithNavController(this.nav, {
-        '/group/:groupId': GroupViewPage,
-        '/match/:matchId': MatchViewPage
-      }).subscribe((match) => {
-        console.log('Successfully routed', match);
-      }, (nomatch) => {
-        console.warn('Unmatched Route', nomatch);
-      });
-*/
+      /*
+            // Convenience to route with a given nav
+            Deeplinks.routeWithNavController(this.nav, {
+              '/group/:groupId': GroupViewPage,
+              '/match/:matchId': MatchViewPage
+            }).subscribe((match) => {
+              console.log('Successfully routed', match);
+            }, (nomatch) => {
+              console.warn('Unmatched Route', nomatch);
+            });
+      */
 
     });
 
-    this.translate.onLangChange.subscribe((event: LangChangeEvent) =>
-      {
-        if(event.lang == 'ar')
-        {
-          platform.setDir('rtl', true);
-          platform.setDir('ltr', false);
-        }
-        else
-        {
-          platform.setDir('ltr', true);
-          platform.setDir('rtl', false);
-        }
-        Observable.forkJoin(
-          this.translate.get('HOME'),
-          this.translate.get('FORMS'),
-          this.translate.get('FUNCTIONALITIES'),
-          this.translate.get('LAYOUTS'),
-          this.translate.get('SETTINGS')
-        ).subscribe(data => {
-          this.pages = [
-            { title: data[0], icon: 'home', component: TabsNavigationPage },
-            { title: data[1], icon: 'create', component: FormsPage },
-            { title: data[2], icon: 'code', component: FunctionalitiesPage }
-          ];
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      if (event.lang == 'ar') {
+        platform.setDir('rtl', true);
+        platform.setDir('ltr', false);
+      }
+      else {
+        platform.setDir('ltr', true);
+        platform.setDir('rtl', false);
+      }
+      Observable.forkJoin(
+        this.translate.get('HOME'),
+        this.translate.get('SETTINGS')
+      ).subscribe(data => {
+        this.pages = [
+          { title: data[0], icon: 'home', component: TabsNavigationPage }
+        ];
 
-          this.pushPages = [
-            { title: data[3], icon: 'grid', component: LayoutsPage },
-            { title: data[4], icon: 'settings', component: SettingsPage }
-          ];
-        });
+        this.pushPages = [
+          { title: data[1], icon: 'settings', component: SettingsPage }
+        ];
       });
+    });
 
   }
 

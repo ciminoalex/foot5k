@@ -17,5 +17,6 @@ export class TabsNavigationPage {
     this.tab1Root = HomePage;
     this.tab2Root = GroupsPage;
     this.tab3Root = MyMatchesPage;
+
   }
 }

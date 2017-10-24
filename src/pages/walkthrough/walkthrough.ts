@@ -1,8 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides } from 'ionic-angular';
+import { NavController, Slides, LoadingController } from 'ionic-angular';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { TabsNavigationPage } from '../../pages/tabs-navigation/tabs-navigation';
 
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
+
+import { UsersProvider } from '../../providers/users/users';
+import { LocalInfoProvider } from '../../providers/local-info/local-info';
 
 @Component({
   selector: 'walkthrough-page',
@@ -11,12 +16,49 @@ import { SignupPage } from '../signup/signup';
 export class WalkthroughPage {
 
   lastSlide = false;
-
+  loading: any;
+  
   @ViewChild('slider') slider: Slides;
 
-  constructor(public nav: NavController) {
+  constructor(
+    public nativeStorage: NativeStorage,
+    public nav: NavController,
+    public loadingCtrl: LoadingController,
+    public UsersService: UsersProvider,
+    public LocalInfo: LocalInfoProvider
+  ) {
 
   }
+
+  ionViewDidLoad() {
+
+    this.nativeStorage.getItem('UserDeviceAuth')
+    .then(
+    data => {
+      console.log(data);
+      console.log(data.UserID);
+      if (data.UserID == 'undefined') {
+        console.log("Never LoggedIn or LoggedOut!");
+      }
+      else {
+
+        this.loading = this.loadingCtrl.create();
+        this.loading.present();
+
+        this.UsersService.getUserByID(data.UserID).subscribe(data => {
+          this.LocalInfo.CurrentUserID = data.ID;
+          this.LocalInfo.CurrentUserObj = data;
+
+          this.loading.dismiss();
+          this.nav.setRoot(TabsNavigationPage);
+        })
+
+      }
+
+    });
+
+}
+
 
   skipIntro() {
     // You can skip to main app

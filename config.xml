@@ -3,7 +3,9 @@
     <name>Foot5k</name>
     <description>Organizza le tue partite di calcetto con Foot5K</description>
     <author email="cimino.alex@gmail.com" href="http://www.foot5k.com/">Foot5K.com</author>
+    <allow-navigation href="*" />
     <content src="index.html" />
+    <content original-src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
