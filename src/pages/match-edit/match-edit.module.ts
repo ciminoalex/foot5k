@@ -1,3 +1,4 @@
+/*
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { MatchEditPage } from './match-edit';
@@ -11,3 +12,4 @@ import { MatchEditPage } from './match-edit';
   ],
 })
 export class MatchEditPageModule {}
+*/

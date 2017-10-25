@@ -1,3 +1,4 @@
+/*
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HomePage } from './home';
@@ -23,3 +24,4 @@ export class ListingItemModel {
   title: string;
   image: string;
 }
+*/
