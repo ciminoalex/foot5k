@@ -25,9 +25,6 @@ import { MatchEditPage } from '../match-edit/match-edit';
 export class HomePage {
 
   rootPage: any = WalkthroughPage;
-  settingPage: any = SettingsPage;
-  matchViewPage: any = MatchViewPage;
-  matchEditPage: any = MatchEditPage;
   CurrentUser: UserObject = null;
   loading: any;
   
@@ -63,13 +60,13 @@ export class HomePage {
     console.log(match);
       // close the menu when clicking a link from the menu
       this.menu.close();
-      this.app.getRootNav().push(MatchViewPage, {matchId: match});
+      this.app.getRootNav().push('MatchViewPage', {matchId: match});
     }
 
   goToSettings() {
     // close the menu when clicking a link from the menu
     this.menu.close();
-    this.app.getRootNav().push(SettingsPage);
+    this.app.getRootNav().push('SettingsPage');
   }
 
   onSegmentChanged(segmentButton: any) {
@@ -82,7 +79,7 @@ export class HomePage {
 
   createNewMatch(){
     this.menu.close();
-    this.app.getRootNav().push(MatchEditPage, {matchId: -1});
+    this.app.getRootNav().push('MatchEditPage', {matchId: -1});
   }
 
 
