@@ -15,6 +15,10 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
 
+import { FacebookLoginPage } from '../pages/facebook-login/facebook-login';
+import { GoogleLoginPage } from '../pages/google-login/google-login';
+import { TwitterLoginPage } from '../pages/twitter-login/twitter-login';
+
 import { ProfileService } from '../pages/profile/profile.service';
 import { FacebookLoginService } from '../pages/facebook-login/facebook-login.service';
 import { GoogleLoginService } from '../pages/google-login/google-login.service';
@@ -69,6 +73,9 @@ export function createTranslateLoader(http: Http) {
     ForgotPasswordPage,
     TermsOfServicePage,
     PrivacyPolicyPage,
+    FacebookLoginPage,
+    GoogleLoginPage,
+    TwitterLoginPage,
   ],
   imports: [
     BrowserModule,
@@ -101,6 +108,9 @@ export function createTranslateLoader(http: Http) {
     SignupPage,
     TermsOfServicePage,
     PrivacyPolicyPage,
+    FacebookLoginPage,
+    GoogleLoginPage,
+    TwitterLoginPage,
   ],
   providers: [
     ProfileService,
