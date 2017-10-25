@@ -127,7 +127,7 @@ export class GroupViewPage {
   };
 
   editGroup() {
-    this.app.getRootNav().push(GroupEditPage, { groupId: this.current_group_id });
+    this.app.getRootNav().push('GroupEditPage', { groupId: this.current_group_id });
   }
 
   shareGroup() { }

@@ -24,25 +24,9 @@ import { List1Page } from '../pages/list-1/list-1';
 import { List2Page } from '../pages/list-2/list-2';
 import { GridPage } from '../pages/grid/grid';
 import { FormLayoutPage } from '../pages/form-layout/form-layout';
-import { FiltersPage } from '../pages/filters/filters';
 import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
 import { FormValidationsPage } from '../pages/form-validations/form-validations';
-import { HomePage } from '../pages/home/home';
-import { MatchViewPage } from '../pages/match-view/match-view';
-import { MatchEditPage } from '../pages/match-edit/match-edit';
-import { MyMatchesPage } from '../pages/my-matches/my-matches';
-import { GroupsPage } from '../pages/groups/groups';
-import { GroupViewPage } from '../pages/group-view/group-view';
-import { GroupEditPage } from '../pages/group-edit/group-edit';
-
-import { PreloadImage } from '../components/preload-image/preload-image';
-import { BackgroundImage } from '../components/background-image/background-image';
-import { ShowHideContainer } from '../components/show-hide-password/show-hide-container';
-import { ShowHideInput } from '../components/show-hide-password/show-hide-input';
-import { ColorRadio } from '../components/color-radio/color-radio';
-import { CounterInput } from '../components/counter-input/counter-input';
-import { Rating } from '../components/rating/rating';
 
 import { FeedService } from '../pages/feed/feed.service';
 import { ListingService } from '../pages/listing/listing.service';
@@ -75,12 +59,6 @@ import { Crop } from '@ionic-native/crop';
 import { EmailComposer } from '@ionic-native/email-composer';
 
 // Functionalities
-import { FunctionalitiesPage } from '../pages/functionalities/functionalities';
-import { FacebookLoginPage } from '../pages/facebook-login/facebook-login';
-import { GoogleLoginPage } from '../pages/google-login/google-login';
-import { TwitterLoginPage } from '../pages/twitter-login/twitter-login';
-import { ContactCardPage } from '../pages/contact-card/contact-card';
-import { VideoPlaylistPage } from '../pages/video-playlist/video-playlist';
 
 import { VideoPlayerModule } from '../components/video-player/video-player.module';
 import { ValidatorsModule } from '../components/validators/validators.module';
@@ -119,32 +97,10 @@ export function createTranslateLoader(http: Http) {
     List2Page,
     GridPage,
     FormLayoutPage,
-    FiltersPage,
     TermsOfServicePage,
     PrivacyPolicyPage,
-    FunctionalitiesPage,
-    FacebookLoginPage,
-    GoogleLoginPage,
-    ContactCardPage,
-    TwitterLoginPage,
 		AdsPage,
 		FormValidationsPage,
-    VideoPlaylistPage,
-    HomePage,
-    MatchViewPage,
-    MatchEditPage,
-    MyMatchesPage,
-    GroupsPage,
-    GroupViewPage,
-    GroupEditPage,
-    
-    PreloadImage,
-    BackgroundImage,
-    ShowHideContainer,
-    ShowHideInput,
-    ColorRadio,
-    CounterInput,
-    Rating
   ],
   imports: [
     BrowserModule,
@@ -186,24 +142,10 @@ export function createTranslateLoader(http: Http) {
     List2Page,
     GridPage,
     FormLayoutPage,
-    FiltersPage,
     TermsOfServicePage,
     PrivacyPolicyPage,
-    FunctionalitiesPage,
-    FacebookLoginPage,
-    GoogleLoginPage,
-    ContactCardPage,
-    TwitterLoginPage,
 		AdsPage,
 		FormValidationsPage,
-    VideoPlaylistPage,
-    HomePage,
-    MatchViewPage,
-    MatchEditPage,
-    MyMatchesPage,
-    GroupsPage,
-    GroupViewPage,
-    GroupEditPage
   ],
   providers: [
     FeedService,

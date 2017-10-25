@@ -14,9 +14,9 @@ export class TabsNavigationPage {
   tab3Root: any;
 
   constructor() {
-    this.tab1Root = HomePage;
-    this.tab2Root = GroupsPage;
-    this.tab3Root = MyMatchesPage;
+    this.tab1Root = 'HomePage';
+    this.tab2Root = 'GroupsPage';
+    this.tab3Root = 'MyMatchesPage';
 
   }
 }

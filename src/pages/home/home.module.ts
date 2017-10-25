@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HomePage } from './home';
+import { SharedModule } from '../../app/shared.module';
 
 @NgModule({
   declarations: [
@@ -8,7 +9,10 @@ import { HomePage } from './home';
   ],
   imports: [
     IonicPageModule.forChild(HomePage),
+    SharedModule,
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  
 })
 export class HomePageModule {}
 
