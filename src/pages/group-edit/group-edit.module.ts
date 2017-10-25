@@ -1,3 +1,4 @@
+/*
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { GroupEditPage } from './group-edit';
@@ -7,7 +8,8 @@ import { GroupEditPage } from './group-edit';
     GroupEditPage,
   ],
   imports: [
-    IonicPageModule.forChild(GroupEditPage),
+    IonicPageModule.forChild(GroupEditPage)
   ],
 })
 export class GroupEditPageModule {}
+*/
