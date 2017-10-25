@@ -1,4 +1,3 @@
-/*
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { MatchViewPage } from './match-view';
@@ -12,4 +11,3 @@ import { MatchViewPage } from './match-view';
   ],
 })
 export class MatchViewPageModule {}
-*/
