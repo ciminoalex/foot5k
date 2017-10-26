@@ -48,29 +48,29 @@ export class WalkthroughPage {
     public LocalInfo: LocalInfoProvider
   ) {
 
-    this.debug = "START ";    
+    this.debug = "START";    
 
     nativeStorage.getItem('UserDeviceAuth')
     .then(data => {
 
-      this.debug += " | "+data.UserID;
+      this.debug = "START | INSIDE GET DATA | "+data.UserID;    
       
       console.log(data);
       console.log(data.UserID);
       if (data.UserID == 'undefined') {
-        this.debug += " | Never Logged In";
+        this.debug = "START | INSIDE GET DATA | "+data.UserID+ " | NEVER LOGGED ";    
         console.log("Never LoggedIn or LoggedOut!");
       }
       else {
 
+        this.debug = "START | INSIDE GET DATA | "+data.UserID+ " | LOGGED IN ";    
+        
         this.loading = this.loadingCtrl.create();
         this.loading.present();
 
         this.UsersService.getUserByID(data.UserID).subscribe(data => {
           this.LocalInfo.CurrentUserID = data.ID;
           this.LocalInfo.CurrentUserObj = data;
-
-          this.debug += " | Logged In";
           
           this.loading.dismiss();
           this.nav.setRoot(TabsNavigationPage);
@@ -82,10 +82,10 @@ export class WalkthroughPage {
     .catch((err: INativeStorageError) => {
       // resolve only if item not found and default value is provided
 
-      this.debug += " | " + err.source;
+      this.debug = "START | EXCEPTION | "+err+ " ";    
       
       if (err.code === ERROR_CODE.ITEM_NOT_FOUND) {
-        this.debug += " | Item Not Found";
+        this.debug = "START | EXCEPTION | ITEM NOT FOUND ";    
       }
 
     });;
