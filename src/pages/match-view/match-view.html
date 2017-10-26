@@ -8,7 +8,7 @@
   <ion-navbar>
     <ion-title>{{CurrentMatch?.ora | slice:0:5}} | {{CurrentMatch?.campo}}</ion-title>
     <ion-buttons end>
-        <button ion-button (click)="editMatch()">
+        <button ion-button (click)="editMatch()" *ngIf="ImOwner == true">
           <ion-icon name="create"></ion-icon>
         </button>
       </ion-buttons>

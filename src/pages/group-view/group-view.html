@@ -8,7 +8,7 @@
   <ion-navbar>
     <ion-title>{{CurrentGroup?.nome}}</ion-title>
     <ion-buttons end>
-      <button ion-button (click)="editGroup()">
+      <button ion-button (click)="editGroup()" *ngIf="ImOwner == true">
         <ion-icon name="create"></ion-icon>
       </button>
     </ion-buttons>

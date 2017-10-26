@@ -29,6 +29,7 @@ export class MatchViewPage {
   CurrentMatchStatusValue: number = -1;
   CurrentMatchStatusClass: string = 'match-action';
   
+  ImOwner: boolean = false;
   
   constructor(
     public navCtrl: NavController, 
@@ -66,7 +67,7 @@ export class MatchViewPage {
   }
 
   editMatch(){
-    this.app.getRootNav().push(MatchEditPage, {matchId: this.LocalInfo.CurrentMatchID});
+    this.app.getRootNav().push('MatchEditPage', {matchId: this.LocalInfo.CurrentMatchID});
   }
 
   refreshData(){
@@ -74,6 +75,13 @@ export class MatchViewPage {
       this.CurrentMatch = data;
       this.MatchesService.getaPlayerMatchStatus(this.LocalInfo.CurrentMatchID,this.LocalInfo.CurrentUserID).subscribe(data=>{
         this.CurrentMatchPlayerStatus = data;
+
+        console.log(this.CurrentMatch.owner.ID);
+        console.log(this.LocalInfo.CurrentUserID);
+        
+        if(this.CurrentMatch.owner.ID == this.LocalInfo.CurrentUserID){
+          this.ImOwner = true;
+        }
 
         this.CurrentMatchStatusClass = "match-action";
         if(this.CurrentMatchPlayerStatus[0].status=='2')

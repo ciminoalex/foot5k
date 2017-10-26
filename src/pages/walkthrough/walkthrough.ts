@@ -17,6 +17,8 @@ export class WalkthroughPage {
 
   lastSlide = false;
   loading: any;
+
+  debug: string = "";
   
   @ViewChild('slider') slider: Slides;
 
@@ -32,12 +34,17 @@ export class WalkthroughPage {
 
   ionViewDidLoad() {
 
+    this.debug = "START ionViewDidLoad";
     this.nativeStorage.getItem('UserDeviceAuth')
     .then(
     data => {
+
+      this.debug = "START ionViewDidLoad | "+data.UserID;
+      
       console.log(data);
       console.log(data.UserID);
       if (data.UserID == 'undefined') {
+        this.debug = "START ionViewDidLoad | "+data.UserID+" | Never Logged In";
         console.log("Never LoggedIn or LoggedOut!");
       }
       else {
@@ -49,6 +56,8 @@ export class WalkthroughPage {
           this.LocalInfo.CurrentUserID = data.ID;
           this.LocalInfo.CurrentUserObj = data;
 
+          this.debug = "START ionViewDidLoad | "+data.NomeCompleto+" | Logged In";
+          
           this.loading.dismiss();
           this.nav.setRoot(TabsNavigationPage);
         })

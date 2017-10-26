@@ -49,7 +49,7 @@ export class MyMatchesPage {
 
   createNewMatch() {
     this.menu.close();
-    this.app.getRootNav().push(MatchEditPage, { matchId: -1 });
+    this.app.getRootNav().push('MatchEditPage', { matchId: -1 });
   }
 
 
@@ -57,7 +57,7 @@ export class MyMatchesPage {
     console.log(match);
     // close the menu when clicking a link from the menu
     this.menu.close();
-    this.app.getRootNav().push(MatchViewPage, { matchId: match });
+    this.app.getRootNav().push('MatchViewPage', { matchId: match });
   }
 
 }

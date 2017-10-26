@@ -30,6 +30,7 @@ export class GroupViewPage {
   CurrentGroupStatusValue: string = "0";
   CurrentGroupStatusClass: string = 'group-action';
   
+  ImOwner: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -107,6 +108,14 @@ export class GroupViewPage {
 
     this.GroupsService.getGroup(this.current_group_id).subscribe(data => {
       this.CurrentGroup = data;
+
+
+      console.log(this.CurrentGroup.owner);
+      console.log(this.LocalInfo.CurrentUserID);
+      
+      if(this.CurrentGroup.owner.ID == this.LocalInfo.CurrentUserID){
+        this.ImOwner = true;
+      }
 
       this.CurrentGroupStatusClass = "group-action";
       this.GroupsService.isMyGroup(this.current_group_id, this.LocalInfo.CurrentUserID).subscribe(data => {

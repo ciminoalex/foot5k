@@ -66,7 +66,7 @@ export class HomePage {
   goToSettings() {
     // close the menu when clicking a link from the menu
     this.menu.close();
-    this.app.getRootNav().push('SettingsPage');
+    this.app.getRootNav().push(SettingsPage);
   }
 
   onSegmentChanged(segmentButton: any) {

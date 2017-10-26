@@ -78,11 +78,11 @@ export class GroupsPage {
   }
 
   gotoGroup(id:string){
-    this.app.getRootNav().push(GroupViewPage, {groupId: id});
+    this.app.getRootNav().push('GroupViewPage', {groupId: id});
   }
 
   createGroup(){
-    this.app.getRootNav().push(GroupEditPage, {groupId: -1});
+    this.app.getRootNav().push('GroupEditPage', {groupId: -1});
   }
 
 }
