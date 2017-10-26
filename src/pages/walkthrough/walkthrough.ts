@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, Slides, LoadingController } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Storage } from '@ionic/Storage';
 import { TabsNavigationPage } from '../../pages/tabs-navigation/tabs-navigation';
 
 import { LoginPage } from '../login/login';
@@ -42,6 +43,7 @@ export class WalkthroughPage {
 
   constructor(
     public nativeStorage: NativeStorage,
+    public storage: Storage,
     public nav: NavController,
     public loadingCtrl: LoadingController,
     public UsersService: UsersProvider,
@@ -50,7 +52,8 @@ export class WalkthroughPage {
 
     this.debug = "START";    
 
-    nativeStorage.getItem('UserDeviceAuth')
+
+    storage.get('UserDeviceAuth')
     .then(data => {
 
       this.debug = "START | INSIDE GET DATA | "+data.UserID;    

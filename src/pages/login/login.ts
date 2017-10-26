@@ -17,6 +17,7 @@ import { LocalInfoProvider } from '../../providers/local-info/local-info';
 import { UserObject } from '../../providers/users/users.model';
 
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Storage } from '@ionic/Storage';
 
 
 @Component({
@@ -39,6 +40,7 @@ export class LoginPage {
     public loadingCtrl: LoadingController,
     public UsersService: UsersProvider,
     public nativeStorage: NativeStorage,
+    public storage: Storage,
     public LocalInfo: LocalInfoProvider ) {
     this.main_page = { component: TabsNavigationPage };
 
@@ -75,7 +77,7 @@ export class LoginPage {
           this.loading.dismiss();
           this.LocalInfo.CurrentUserObj = data;
 
-          this.nativeStorage.setItem('UserDeviceAuth',{UserID: this.LocalInfo.CurrentUserID});
+          this.storage.set('UserDeviceAuth',{UserID: this.LocalInfo.CurrentUserID});
 
           this.nav.setRoot(this.main_page.component);
         });

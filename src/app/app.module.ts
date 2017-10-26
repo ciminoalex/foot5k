@@ -31,6 +31,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { IonicStorageModule } from '@ionic/Storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
@@ -60,6 +61,10 @@ export function createTranslateLoader(http: Http) {
 	return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+export function provideStorage() {
+  return new Storage();
+  // return new Storage (['sqlite', 'websql', 'indexeddb'], { name: '__mydb' } /* optional config */);
+}
 
 @NgModule({
   declarations: [
@@ -85,7 +90,8 @@ export function createTranslateLoader(http: Http) {
 			modalLeave: 'modal-slide-out',
 			pageTransition: 'ios-transition',
 			swipeBackEnabled: false
-		}),
+    }),
+    IonicStorageModule.forRoot(),
 		TranslateModule.forRoot({
     loader: {
 				provide: TranslateLoader,
