@@ -9,6 +9,23 @@ import { SignupPage } from '../signup/signup';
 import { UsersProvider } from '../../providers/users/users';
 import { LocalInfoProvider } from '../../providers/local-info/local-info';
 
+
+export interface INativeStorageError {
+  code: number;
+  source: string;
+  exception: any;
+}
+
+// https://github.com/TheCocoaProject/cordova-plugin-nativestorage#error-codes
+export const ERROR_CODE = {
+  NATIVE_WRITE_FAILED: 1,
+  ITEM_NOT_FOUND: 2,
+  NULL_REFERENCE: 3,
+  UNDEFINED_TYPE: 4,
+  JSON_ERROR: 5,
+  WRONG_PARAMETER: 6,
+};
+
 @Component({
   selector: 'walkthrough-page',
   templateUrl: 'walkthrough.html'
@@ -19,6 +36,7 @@ export class WalkthroughPage {
   loading: any;
 
   debug: string = "";
+  loggedUserID: any = "";
   
   @ViewChild('slider') slider: Slides;
 
@@ -30,21 +48,17 @@ export class WalkthroughPage {
     public LocalInfo: LocalInfoProvider
   ) {
 
-  }
+    this.debug = "START ";    
 
-  ionViewDidLoad() {
+    nativeStorage.getItem('UserDeviceAuth')
+    .then(data => {
 
-    this.debug = "START ionViewDidLoad";
-    this.nativeStorage.getItem('UserDeviceAuth')
-    .then(
-    data => {
-
-      this.debug = "START ionViewDidLoad | "+data.UserID;
+      this.debug += " | "+data.UserID;
       
       console.log(data);
       console.log(data.UserID);
       if (data.UserID == 'undefined') {
-        this.debug = "START ionViewDidLoad | "+data.UserID+" | Never Logged In";
+        this.debug += " | Never Logged In";
         console.log("Never LoggedIn or LoggedOut!");
       }
       else {
@@ -56,7 +70,7 @@ export class WalkthroughPage {
           this.LocalInfo.CurrentUserID = data.ID;
           this.LocalInfo.CurrentUserObj = data;
 
-          this.debug = "START ionViewDidLoad | "+data.NomeCompleto+" | Logged In";
+          this.debug += " | Logged In";
           
           this.loading.dismiss();
           this.nav.setRoot(TabsNavigationPage);
@@ -64,8 +78,20 @@ export class WalkthroughPage {
 
       }
 
-    });
+    })
+    .catch((err: INativeStorageError) => {
+      // resolve only if item not found and default value is provided
 
+      this.debug += " | " + err.source;
+      
+      if (err.code === ERROR_CODE.ITEM_NOT_FOUND) {
+        this.debug += " | Item Not Found";
+      }
+
+    });;
+  }
+
+  ionViewDidLoad() {
 }
 
 
