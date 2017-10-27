@@ -92,16 +92,24 @@ export class LoginPage {
     // Here we will check if the user is already logged in because we don't want to ask users to log in each time they open the app
     // let this = this;
 
+    this.msg = 'START';
+
     this.facebookLoginService.getFacebookUser()
     .then((data) => {
        // user is previously logged with FB and we have his data we will let him access the app
-      this.nav.setRoot(this.main_page.component);
+       this.msg = 'START | '+data.userId;
+       
+       //this.nav.setRoot(this.main_page.component);
     }, (error) => {
+      this.msg = 'START | ERROR | ';
       //we don't have the user data so we will ask him to log in
       this.facebookLoginService.doFacebookLogin()
       .then((res) => {
+
+        this.msg = 'START | ERROR | '+res.userId;
+        
         this.loading.dismiss();
-        this.nav.setRoot(this.main_page.component);
+        //this.nav.setRoot(this.main_page.component);
       }, (err) => {
         console.log("Facebook Login error", err);
       });

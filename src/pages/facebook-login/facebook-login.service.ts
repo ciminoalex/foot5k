@@ -8,7 +8,7 @@ import { FacebookUserModel } from './facebook-user.model';
 
 @Injectable()
 export class FacebookLoginService {
-  FB_APP_ID: number = 826720427470540;
+  FB_APP_ID: number = 123608394989802;
 
   constructor(
     public http: Http,
@@ -65,6 +65,7 @@ export class FacebookLoginService {
         resolve(this.nativeStorage.setItem('facebook_user',
           {
             userId: user.id,
+            email: user.email,
             name: user.name,
             gender: user.gender,
             image: "https://graph.facebook.com/" + user.id + "/picture?type=large",
