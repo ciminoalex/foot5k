@@ -1,0 +1,57 @@
+<ion-header class="listing-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <div class="header-logo" style="margin:auto;">
+        <preload-image [ratio]="{w:534, h:194}" src="./assets/images/logo.png"></preload-image>
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="profile-content">
+
+  <ion-fab right bottom>
+      <button ion-fab color="secondary"><ion-icon name="arrow-dropup"></ion-icon></button>
+      <ion-fab-list side="top">
+          <button ion-fab (click)="createNewMatch()"><ion-icon name="football"></ion-icon><ion-label>Crea nuova partita</ion-label></button>
+        </ion-fab-list>
+  </ion-fab>
+  <div>
+    <div>
+      <ion-list class="schedule-list">
+        <ion-item class="schedule-item" *ngFor="let match of this.LocalInfo.CurrentUserObj.MatchesALL" (click)="goToMatch(match.id)">
+          <ion-row>
+            <ion-col width-20 class="schedule-date">
+              <h2 class="schedule-day">{{match.data | date:'dd'}}</h2>
+              <h3 class="schedule-month">{{match.data | date:'MMM'}}</h3>
+            </ion-col>
+            <ion-col width-80 class="schedule-data">
+              <div class="schedule-match-group"></div>
+              <div class="data-item">
+                <div class="item-content">
+                  <div class="item-description">
+                    <ion-icon class="description-icon" name="clock"></ion-icon>
+                    <p class="description-text">{{match.ora | slice:0:5}} | {{match.campo}}</p>
+                  </div>
+                  <div class="item-description">
+                    <ion-icon class="description-icon" name="people"></ion-icon>
+                    <div class="description-text one-line">
+                      <span *ngFor="let user of match.conferme">
+                        <img src="{{user.Picture}}" style="height:15px;width:15px;border-radius:8px;">
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <ion-icon class="item-icon" name="arrow-forward"></ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+</ion-content>

@@ -38,9 +38,9 @@ export class SignupPage {
     this.main_page = { component: SettingsPage };
 
     this.signup = new FormGroup({
-      email: new FormControl('pippo@paperino.com', Validators.required),
-      password: new FormControl('test', Validators.required),
-      confirm_password: new FormControl('test', Validators.required)
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      confirm_password: new FormControl('', Validators.required)
     });
   }
 

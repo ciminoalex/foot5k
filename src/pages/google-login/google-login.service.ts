@@ -8,7 +8,7 @@ import { GoogleUserModel } from './google-user.model';
 @Injectable()
 export class GoogleLoginService {
 
-  webClientId: string = "1092390853283-i98feg7fb1dlsm92kkcbim62855pepi8.apps.googleusercontent.com";
+  webClientId: string = "995265333073-tlhn6ovatc44apq8eps4v54m4uohdk7l.apps.googleusercontent.com";
 
   constructor(
     public http: Http,

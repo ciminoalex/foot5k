@@ -47,8 +47,8 @@ export class LoginPage {
     this.loading = this.loadingCtrl.create();
     
     this.login = new FormGroup({
-      email: new FormControl('info@smartylife.net', Validators.required),
-      password: new FormControl('test', Validators.required)
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     });
   }
 
@@ -61,6 +61,7 @@ export class LoginPage {
       if(this.user==null)
       {
         this.msg = "Email not found!";
+        this.loading.dismiss();
       }else{
 
         this.main_page = { component: TabsNavigationPage };
@@ -71,45 +72,90 @@ export class LoginPage {
         }
         
 
-        this.LocalInfo.CurrentUserID = this.user.ID;
+        this.UsersService.getUserByID(this.user.ID).subscribe(data=>{
+          this.user = data; 
 
-        this.UsersService.getUserByID(this.LocalInfo.CurrentUserID).subscribe(data=>{
-          this.loading.dismiss();
-          this.LocalInfo.CurrentUserObj = data;
-
+          this.LocalInfo.CurrentUserID = this.user.ID;
+          this.LocalInfo.CurrentUserObj = this.user;
           this.storage.set('UserDeviceAuth',{UserID: this.LocalInfo.CurrentUserID});
-
+          this.loading.dismiss();
           this.nav.setRoot(this.main_page.component);
+
         });
-  
+    
       }
     })
   }
 
   doFacebookLogin() {
     this.loading = this.loadingCtrl.create();
-
+    this.loading.present();
+    
     // Here we will check if the user is already logged in because we don't want to ask users to log in each time they open the app
     // let this = this;
 
-    this.msg = 'START';
+    //this.msg = 'START';
 
     this.facebookLoginService.getFacebookUser()
     .then((data) => {
        // user is previously logged with FB and we have his data we will let him access the app
-       this.msg = 'START | '+data.userId;
-       
+       //this.msg = 'START | '+ data.userId + ' | '+ data.name + ' | '+ data.email + '' ;
+
+       this.UsersService.logInFacebook(data.userId,data.name,data.email).subscribe(data=>{
+        this.user = data; 
+        console.log(this.user)
+        if(this.user==null)
+        {
+          this.loading.dismiss();
+          //this.msg = "Account not found!";
+        }else{
+  
+          this.main_page = { component: TabsNavigationPage };
+  
+          if(this.user.NomeCompleto==this.user.Email)
+          {
+            this.main_page = { component: SettingsPage };
+          }
+          
+          this.LocalInfo.CurrentUserID = this.user.ID;
+          this.LocalInfo.CurrentUserObj = this.user;
+          this.storage.set('UserDeviceAuth',{UserID: this.LocalInfo.CurrentUserID});
+          this.loading.dismiss();
+          this.nav.setRoot(this.main_page.component);
+        }
+      })
+     
        //this.nav.setRoot(this.main_page.component);
     }, (error) => {
-      this.msg = 'START | ERROR | ';
+      //this.msg = 'START | ERROR | ';
       //we don't have the user data so we will ask him to log in
       this.facebookLoginService.doFacebookLogin()
       .then((res) => {
 
-        this.msg = 'START | ERROR | '+res.userId;
-        
-        this.loading.dismiss();
-        //this.nav.setRoot(this.main_page.component);
+        this.UsersService.logInFacebook(res.userId,res.name,res.email).subscribe(data=>{
+          this.user = data; 
+          console.log(this.user)
+          if(this.user==null)
+          {
+            this.loading.dismiss();
+            //this.msg = "Account not found!";
+          }else{
+    
+            this.main_page = { component: TabsNavigationPage };
+    
+            if(this.user.NomeCompleto==this.user.Email)
+            {
+              this.main_page = { component: SettingsPage };
+            }
+          
+            this.LocalInfo.CurrentUserID = this.user.ID;
+            this.LocalInfo.CurrentUserObj = this.user;
+            this.storage.set('UserDeviceAuth',{UserID: this.LocalInfo.CurrentUserID});
+            this.loading.dismiss();
+            this.nav.setRoot(this.main_page.component);
+            }
+        })
+            
       }, (err) => {
         console.log("Facebook Login error", err);
       });
@@ -124,14 +170,41 @@ export class LoginPage {
     this.googleLoginService.trySilentLogin()
     .then((data) => {
        // user is previously logged with Google and we have his data we will let him access the app
+      //this.msg = "Account:"+data.email;
       this.nav.setRoot(this.main_page.component);
     }, (error) => {
       //we don't have the user data so we will ask him to log in
       this.googleLoginService.doGoogleLogin()
       .then((res) => {
-        this.loading.dismiss();
-        this.nav.setRoot(this.main_page.component);
+
+        //this.msg = "Account:"+res.email;
+        
+
+        this.UsersService.logInGoogle(res.userId,res.name,res.email,res.image).subscribe(data=>{
+          this.user = data; 
+          console.log(this.user)
+          if(this.user==null)
+          {
+            this.loading.dismiss();
+            this.msg = "Account not found!";
+          }else{
+    
+            this.main_page = { component: TabsNavigationPage };
+    
+            if(this.user.NomeCompleto==this.user.Email)
+            {
+              this.main_page = { component: SettingsPage };
+            }
+          
+            this.LocalInfo.CurrentUserID = this.user.ID;
+            this.LocalInfo.CurrentUserObj = this.user;
+            this.storage.set('UserDeviceAuth',{UserID: this.LocalInfo.CurrentUserID});
+            this.loading.dismiss();
+            this.nav.setRoot(this.main_page.component);
+            }
+        })
       }, (err) => {
+        this.msg = "Google Login error, "+err;
         console.log("Google Login error", err);
       });
     });

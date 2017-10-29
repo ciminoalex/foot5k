@@ -45,6 +45,29 @@ export class UsersProvider {
     return this.http.get(this.global_vars.json_url + '?action=userbyem&eml='+email+'&pwd='+password+'').map(res => res.json());
   }
 
+  //res.userId,res.name,res.email
+  logInFacebook(fuid:string, name:string, email:string): Observable<UserObject> {
+    fuid = encodeURIComponent(fuid);
+    name = encodeURIComponent(name);
+    email = encodeURIComponent(email);
+    var picture:string = 'https://graph.facebook.com/'+fuid+'/picture?type=large';
+    picture = encodeURIComponent(picture);
+
+    console.log(this.global_vars.json_url + '?action=checksocialuser&sid='+fuid+'&stype=facebook&name='+name+'&email='+email+'&picture='+picture+'');
+    return this.http.get(this.global_vars.json_url + '?action=checksocialuser&sid='+fuid+'&stype=facebook&name='+name+'&email='+email+'&picture='+picture+'').map(res => res.json());
+  }
+
+  logInGoogle(fuid:string, name:string, email:string, picture:string): Observable<UserObject> {
+    fuid = encodeURIComponent(fuid);
+    name = encodeURIComponent(name);
+    email = encodeURIComponent(email);
+    picture = encodeURIComponent(picture);
+
+    console.log(this.global_vars.json_url + '?action=checksocialuser&sid='+fuid+'&stype=google&name='+name+'&email='+email+'&picture='+picture+'');
+    return this.http.get(this.global_vars.json_url + '?action=checksocialuser&sid='+fuid+'&stype=google&name='+name+'&email='+email+'&picture='+picture+'').map(res => res.json());
+  }
+
+
   getUserByID(ID:string): Observable<UserObject> {
     console.log(this.global_vars.json_url + '?action=userbyid&uid='+ID+'&load=true');
     return this.http.get(this.global_vars.json_url + '?action=userbyid&uid='+ID+'&load=true').map(res => res.json());

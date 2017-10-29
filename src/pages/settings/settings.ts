@@ -24,7 +24,7 @@ import { UsersProvider } from '../../providers/users/users';
 import { LocalInfoProvider } from '../../providers/local-info/local-info';
 import { UserObject } from '../../providers/users/users.model';
 
-import { NativeStorage } from '@ionic-native/native-storage';
+import { Storage } from '@ionic/Storage';
 
 @Component({
   selector: 'settings-page',
@@ -54,7 +54,7 @@ export class SettingsPage {
     public cropService: Crop,
     public platform: Platform,
     public UsersService: UsersProvider,
-    public nativeStorage: NativeStorage,
+    public storage: Storage,
     public LocalInfo: LocalInfoProvider
   ) {
     this.loading = this.loadingCtrl.create();
@@ -106,7 +106,7 @@ export class SettingsPage {
 
   logout() {
     // navigate to the new page if it is not the current page
-    this.nativeStorage.remove('UserDeviceAuth');
+    this.storage.remove('UserDeviceAuth');
     this.nav.setRoot(this.rootPage);
   }
 

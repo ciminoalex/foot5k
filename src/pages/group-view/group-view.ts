@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, LoadingController, App, AlertContr
 import { LocalInfoProvider } from '../../providers/local-info/local-info';
 
 import { GroupsProvider } from '../../providers/groups/groups';
+import { UsersProvider } from '../../providers/users/users';
 import { GroupEditPage } from '../group-edit/group-edit';
 
 /**
@@ -38,6 +39,7 @@ export class GroupViewPage {
     public LocalInfo: LocalInfoProvider,
     public loadingCtrl: LoadingController,
     public GroupsService: GroupsProvider,
+    public UsersService: UsersProvider,
     public navParams: NavParams,
     public alertCtrl: AlertController
   ) {
@@ -131,6 +133,12 @@ export class GroupViewPage {
         }
         this.loading.dismiss();
       });
+
+
+      this.UsersService.getUserByID(this.LocalInfo.CurrentUserID).subscribe(data => {
+        this.LocalInfo.CurrentUserObj = data;
+      });
+
 
     });
   };

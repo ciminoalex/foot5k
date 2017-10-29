@@ -113,9 +113,21 @@ export class MatchViewPage {
     var description: string = this.CurrentMatch.campo + "\n";
     var thumbnail: string = null;
 
+    let newDate = new Date(this.CurrentMatch.data);
+    description+=("0"+newDate.getDay()).slice(-2)+"/"+("0"+newDate.getMonth()).slice(-2)+ "/"+newDate.getFullYear()+ " ("+this.CurrentMatch.ora.slice(0,5)+"-"+this.CurrentMatch.ora_a.slice(0,5)+") \n";
+
+    var i:number = 1;
     for (let users of this.CurrentMatch.conferme) {
-      description += users.NomeCompleto + "\n";
+      description += ("0"+i).slice(-2)+". "+ users.NomeCompleto + "\n";
+      i++;
     } 
+
+    if(this.CurrentMatch.conferme_num<Number(this.CurrentMatch.giocatori)){
+      description += "\n";
+      description += "Mancano "+(Number(this.CurrentMatch.giocatori)-this.CurrentMatch.conferme_num)+" giocatori.";
+    }
+  
+    console.log(description);
 
      this.socialSharing.share(description, title, thumbnail, null)
      .then(() => {

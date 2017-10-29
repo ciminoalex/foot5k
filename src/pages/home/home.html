@@ -22,6 +22,7 @@
       <button ion-fab color="secondary"><ion-icon name="arrow-dropup"></ion-icon></button>
       <ion-fab-list side="top">
           <button ion-fab (click)="createNewMatch()"><ion-icon name="football"></ion-icon><ion-label>Crea nuova partita</ion-label></button>
+          <button ion-fab (click)="viewMatchList()"><ion-icon name="list"></ion-icon><ion-label>Storico partite</ion-label></button>
         </ion-fab-list>
   </ion-fab>
 
@@ -74,7 +75,7 @@
   <div>
     <div>
       <ion-list class="schedule-list">
-        <ion-item class="schedule-item" *ngFor="let match of this.LocalInfo.CurrentUserObj.MatchesALL" (click)="goToMatch(match.id)">
+        <ion-item class="schedule-item" *ngFor="let match of this.LocalInfo.CurrentUserObj.Matches" (click)="goToMatch(match.id)">
           <ion-row>
             <ion-col width-20 class="schedule-date">
               <h2 class="schedule-day">{{match.data | date:'dd'}}</h2>

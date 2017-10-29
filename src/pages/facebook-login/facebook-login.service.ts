@@ -22,9 +22,9 @@ export class FacebookLoginService {
   {
     return new Promise<FacebookUserModel>((resolve, reject) => {
       //["public_profile"] is the array of permissions, you can add more if you need
-      this.fb.login(["public_profile"]).then((response) => {
+      this.fb.login(["public_profile","email"]).then((response) => {
         //Getting name and gender properties
-        this.fb.api("/me?fields=name,gender", [])
+        this.fb.api("/me?fields=name,gender,email", [])
         .then((user) => {
           //now we have the users info, let's save it in the NativeStorage
           this.setFacebookUser(user)

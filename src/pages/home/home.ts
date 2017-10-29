@@ -9,6 +9,7 @@ import { WalkthroughPage } from '../walkthrough/walkthrough';
 import { SettingsPage } from '../settings/settings';
 import { MatchViewPage } from '../match-view/match-view';
 import { MatchEditPage } from '../match-edit/match-edit';
+import { MatchAllPage } from '../match-all/match-all';
 
 /**
  * Generated class for the HomePage page.
@@ -80,6 +81,11 @@ export class HomePage {
   createNewMatch(){
     this.menu.close();
     this.app.getRootNav().push('MatchEditPage', {matchId: -1});
+  }
+
+  viewMatchList(){
+    this.menu.close();
+    this.app.getRootNav().push('MatchAllPage', {matchId: -1});
   }
 
 

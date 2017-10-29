@@ -1,6 +1,6 @@
 {
-  "name": "ion2-fullapp-ELITE",
-  "author": "Ionic Themes",
+  "name": "Foot5K",
+  "author": "Alessandro Cimino",
   "homepage": "https://ionicthemes.com",
   "private": true,
   "scripts": {
@@ -56,7 +56,7 @@
     "cordova-plugin-facebook4": "^1.9.1",
     "cordova-plugin-geolocation": "^2.4.3",
     "cordova-plugin-globalization": "^1.0.7",
-    "cordova-plugin-googleplus": "^5.1.1",
+    "cordova-plugin-googleplus": "git+https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git",
     "cordova-plugin-inappbrowser": "^1.7.1",
     "cordova-plugin-nativestorage": "^2.2.2",
     "cordova-plugin-splashscreen": "^4.0.3",
@@ -110,7 +110,7 @@
         "FABRIC_KEY": "6da298eb1112d28ba03183d50236498db4b7380e"
       },
       "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1092390853283-icg6lqtcg6k270de9c8tv3i7qehlqtor"
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.386500322162-qqgt7f53q7krn8p6fr6dduga04qrn4k7"
       }
     },
     "platforms": [
