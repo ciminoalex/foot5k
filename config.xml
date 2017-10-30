@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="14" id="com.ad.foot5k" version="0.10.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="16" id="com.ad.foot5k" version="0.11.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Foot5k</name>
     <description>Organizza le tue partite di calcetto con Foot5K</description>
     <author email="cimino.alex@gmail.com" href="http://www.foot5k.com/">Foot5K.com</author>
