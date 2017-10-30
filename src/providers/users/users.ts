@@ -68,9 +68,9 @@ export class UsersProvider {
   }
 
 
-  getUserByID(ID:string): Observable<UserObject> {
+  getUserByID(ID:string,LoadAll:string = 'true'): Observable<UserObject> {
     console.log(this.global_vars.json_url + '?action=userbyid&uid='+ID+'&load=true');
-    return this.http.get(this.global_vars.json_url + '?action=userbyid&uid='+ID+'&load=true').map(res => res.json());
+    return this.http.get(this.global_vars.json_url + '?action=userbyid&uid='+ID+'&load='+LoadAll).map(res => res.json());
   }
 
   signUpMail(email:string, password:string): Observable<UserObject> {
