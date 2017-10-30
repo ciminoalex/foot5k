@@ -22,7 +22,7 @@
       <button ion-fab color="secondary"><ion-icon name="arrow-dropup"></ion-icon></button>
       <ion-fab-list side="top">
           <button ion-fab (click)="shareMatch()"><ion-icon name="share"></ion-icon> <ion-label>Condividi</ion-label></button>
-          <button ion-fab><ion-icon name="person-add"></ion-icon> <ion-label>Aggiungi ospite</ion-label></button>
+          <button ion-fab (click)="addGuest()"><ion-icon name="person-add"></ion-icon> <ion-label>Aggiungi ospite</ion-label></button>
         </ion-fab-list>
   </ion-fab>
 
@@ -91,7 +91,7 @@
 
   <ion-item-group>
     <ion-item-divider class="players-divider">{{ 'CONFIRMED' | translate }}</ion-item-divider>
-    <ion-item class="players-item" *ngFor="let user of CurrentMatch?.conferme">
+    <ion-item class="players-item" *ngFor="let user of CurrentMatch?.conferme" (press)="deleteGuest(user.ID, user.Type)">
       <ion-avatar item-left>
         <preload-image class="user-image" [ratio]="{w:1, h:1}" [src]="user.Picture"></preload-image>
       </ion-avatar>

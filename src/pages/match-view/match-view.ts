@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, App  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, App, AlertController  } from 'ionic-angular';
 
 import { UsersProvider } from '../../providers/users/users';
 import { MatchesProvider } from '../../providers/matches/matches';
@@ -39,7 +39,8 @@ export class MatchViewPage {
     public MatchesService: MatchesProvider,
     public LocalInfo: LocalInfoProvider,
     public app: App,
-    public socialSharing: SocialSharing
+    public socialSharing: SocialSharing,
+    public alertCtrl: AlertController
   ) {
 
       this.loading = this.loadingCtrl.create();
@@ -137,6 +138,77 @@ export class MatchViewPage {
         console.log('Error');
      });
     }
-  
+
+    
+    addGuest() {
+      
+          let prompt = this.alertCtrl.create({
+            title: 'Aggiungi ospite',
+            message: "Inserisci il nome dell'ospite invitato alla partita.",
+            inputs: [
+              {
+                name: 'name',
+                placeholder: 'Nome e Cognome'
+              },
+            ],
+            buttons: [
+              {
+                text: 'Annulla',
+                handler: data => {
+                  console.log('Cancel clicked');
+                }
+              },
+              {
+                text: 'Aggiungi',
+                handler: data => {
+                  console.log('Saved clicked');
+                  console.log(data.passcode);
+                  this.loading = this.loadingCtrl.create();
+                  this.loading.present();
+                  this.MatchesService.addGuest(this.CurrentMatch.id, data.name).subscribe(data => {
+                    console.log(data);
+                    this.refreshData();
+                  });
+                }
+              }
+            ]
+          });
+          prompt.present();
+
+        }
+
+        deleteGuest(ID:string, Type:string){
+
+
+          console.log("Pressed! "+ID);
+
+          if(Type!='guest')
+            return false;
+
+          let confirm = this.alertCtrl.create({
+            title: 'Attenzione!',
+            message: 'Sicuro di voler rimuovere l\'ospite dalla partita?',
+            buttons: [
+              {
+                text: 'No, mi sono sbagliato',
+                handler: () => {
+                  console.log('UNDO DELETE');
+                }
+              },
+              {
+                text: 'Si, sono sicuro',
+                handler: () => {
+                  this.loading = this.loadingCtrl.create();
+                  this.loading.present();
+                  this.MatchesService.deleteGuest(ID).subscribe(data => {
+                    this.refreshData();
+                  });
+                }
+              }
+            ]
+          });
+          confirm.present();  
+        }
+          
 
 }

@@ -69,5 +69,15 @@ export class MatchesProvider {
     return this.http.get(this.global_vars.json_url + '?action=updatematch&mid='+id+'&date='+date+'&time='+time+'&timeto='+timeto+'&campo='+campo+'&owner='+owner+'&type=1&players='+players+'&groupid='+groupid+'&allgroups='+all_group).map(res => res.json());
   }
 
+  addGuest(id:string,guestName:string){
+    guestName = encodeURIComponent(guestName);
+    console.log(this.global_vars.json_url + '?action=addguest&mid='+id+'&name='+guestName);
+    return this.http.get(this.global_vars.json_url + '?action=addguest&mid='+id+'&name='+guestName).map(res => res.json());
+  }
+
+  deleteGuest(guestId:string){
+    console.log(this.global_vars.json_url + '?action=deleteguest&uid='+guestId);
+    return this.http.get(this.global_vars.json_url + '?action=deleteguest&uid='+guestId).map(res => res.json());
+  }
 
 }
