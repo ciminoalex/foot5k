@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, App, AlertController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, App, AlertController, ActionSheetController  } from 'ionic-angular';
 
 import { UsersProvider } from '../../providers/users/users';
 import { MatchesProvider } from '../../providers/matches/matches';
@@ -40,7 +40,8 @@ export class MatchViewPage {
     public LocalInfo: LocalInfoProvider,
     public app: App,
     public socialSharing: SocialSharing,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public actionSheetCtrl: ActionSheetController
   ) {
 
       this.loading = this.loadingCtrl.create();
@@ -177,13 +178,43 @@ export class MatchViewPage {
 
         }
 
+        activePlayerMenu(ID:string, Type:string, Name:string) {
+          let actionSheet = this.actionSheetCtrl.create({
+            title: 'Menu giocatore: ' + Name,
+            buttons: [
+              {
+                text: 'Vai a scheda giocatore',
+                icon: 'person',
+                handler: () => {
+                  console.log('Destructive clicked');
+                }
+              },{
+                text: 'Rimuovi giocatore dalla partita',
+                icon: 'trash',
+                handler: () => {
+                  this.deleteGuest(ID,Type)
+                }
+              }
+            ]
+          });
+          actionSheet.present();
+        }
+
+
         deleteGuest(ID:string, Type:string){
 
 
           console.log("Pressed! "+ID);
 
-          if(Type!='guest')
-            return false;
+          if(Type!='guest'){
+            let alert = this.alertCtrl.create({
+                title: 'Attenzione!',
+                subTitle: 'Possono essere rimossi dalla partita solo gli ospiti.',
+                buttons: ['OK']
+              });
+              alert.present();
+              return false;
+          }
 
           let confirm = this.alertCtrl.create({
             title: 'Attenzione!',

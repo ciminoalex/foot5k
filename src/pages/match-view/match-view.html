@@ -91,7 +91,8 @@
 
   <ion-item-group>
     <ion-item-divider class="players-divider">{{ 'CONFIRMED' | translate }}</ion-item-divider>
-    <ion-item class="players-item" *ngFor="let user of CurrentMatch?.conferme" (press)="deleteGuest(user.ID, user.Type)">
+    <ion-item class="players-item" *ngFor="let user of CurrentMatch?.conferme" (press)="activePlayerMenu(user.ID, user.Type ,user.NomeCompleto)">
+      <div [class]="user.Type"></div>
       <ion-avatar item-left>
         <preload-image class="user-image" [ratio]="{w:1, h:1}" [src]="user.Picture"></preload-image>
       </ion-avatar>
