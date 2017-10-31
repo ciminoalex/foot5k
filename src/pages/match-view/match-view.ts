@@ -116,7 +116,7 @@ export class MatchViewPage {
     var thumbnail: string = null;
 
     let newDate = new Date(this.CurrentMatch.data);
-    description+=("0"+newDate.getDay()).slice(-2)+"/"+("0"+newDate.getMonth()).slice(-2)+ "/"+newDate.getFullYear()+ " ("+this.CurrentMatch.ora.slice(0,5)+"-"+this.CurrentMatch.ora_a.slice(0,5)+") \n";
+    description+=("0"+newDate.getDate()).slice(-2)+"/"+("0"+(newDate.getMonth()+1)).slice(-2)+ "/"+newDate.getFullYear()+ " ("+this.CurrentMatch.ora.slice(0,5)+"-"+this.CurrentMatch.ora_a.slice(0,5)+") \n\n";
 
     var i:number = 1;
     for (let users of this.CurrentMatch.conferme) {
