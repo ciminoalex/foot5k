@@ -1,0 +1,71 @@
+<!--
+  Generated template for the MatchDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{CurrentMatch?.ora | slice:0:5}} | {{CurrentMatch?.campo}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="editMatch()" *ngIf="ImOwner == true">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="match-details">
+  <div class="header-results">
+    <ion-row>
+      <ion-col width-33 class="teams team-a">
+        <ion-avatar item-center>
+          <preload-image class="team-image" [ratio]="{w:1, h:1}" [src]=""></preload-image>
+        </ion-avatar>
+      </ion-col>
+      <ion-col width-33 class="results">
+        <ion-item>
+          <div class="results">1-2</div>
+        </ion-item>
+      </ion-col>
+      <ion-col width-33 class="teams team-b">
+        <ion-avatar item-center>
+          <preload-image class="team-image" [ratio]="{w:1, h:1}" [src]=""></preload-image>
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+  </div>
+  <ion-list class="players">
+    <!-- SQUADRA A -->
+    <ion-item-sliding #item class="player team-a" *ngFor="let user of CurrentMatch?.players_a">
+        <ion-item class="player team-a"><div class="marker-team-a"></div>{{user.NomeCompleto}}</ion-item>
+        <ion-item-options side="left">
+          <button ion-button (click)="assPlayerToTeam(user.ID,'A')">{{'TEAM A' | translate}}</button>
+        </ion-item-options>
+        <ion-item-options side="right">
+          <button ion-button color="danger"  (click)="assPlayerToTeam(user.ID,'B')">{{'TEAM B' | translate}}</button>
+        </ion-item-options>
+    </ion-item-sliding>
+    <!-- SQUADRA B -->
+    <ion-item-sliding #item class="player team-b" *ngFor="let user of CurrentMatch?.players_b">
+        <ion-item class="player team-b"><div class="marker-team-b"></div>{{user.NomeCompleto}}</ion-item>
+        <ion-item-options side="left">
+          <button ion-button (click)="assPlayerToTeam(user.ID,'A')">{{'TEAM A' | translate}}</button>
+        </ion-item-options>
+        <ion-item-options side="right">
+          <button ion-button color="danger"  (click)="assPlayerToTeam(user.ID,'B')">{{'TEAM B' | translate}}</button>
+        </ion-item-options>
+      </ion-item-sliding>
+    <!-- SENZA SQUADRA -->
+    <ion-item-sliding #item class="player no-team" *ngFor="let user of CurrentMatch?.players_na">
+        <ion-item class="player no-team"><div class="marker-team-na"></div>{{user.NomeCompleto}}</ion-item>
+        <ion-item-options side="left">
+          <button ion-button (click)="assPlayerToTeam(user.ID,'A')">{{'TEAM A' | translate}}</button>
+        </ion-item-options>
+        <ion-item-options side="right">
+          <button ion-button color="danger"  (click)="assPlayerToTeam(user.ID,'B')">{{'TEAM B' | translate}}</button>
+        </ion-item-options>
+      </ion-item-sliding>
+      </ion-list>
+</ion-content>

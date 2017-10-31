@@ -80,4 +80,9 @@ export class MatchesProvider {
     return this.http.get(this.global_vars.json_url + '?action=deleteguest&uid='+guestId).map(res => res.json());
   }
 
+  assignPlayerToTeam(matchId:string,playerId:string,team:string){
+    console.log(this.global_vars.json_url + '?action=assignplayertoteam&mid='+matchId+'&uid='+playerId+'&team='+team+'');
+    return this.http.get(this.global_vars.json_url + '?action=assignplayertoteam&mid='+matchId+'&uid='+playerId+'&team='+team+'').map(res => res.json());
+  }
+
 }

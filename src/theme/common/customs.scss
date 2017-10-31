@@ -3,6 +3,10 @@
     width: 25vw;
 }
 
+.item-ios.item-block .item-inner{
+    border-bottom:unset;
+}
+
 .toolbar-background {
     //background-image: url('http://localhost:8100/assets/images/background.jpg')!important;
     background-size: cover;

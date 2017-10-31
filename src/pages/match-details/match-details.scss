@@ -1,0 +1,44 @@
+page-match-details {
+
+    .header-results{
+        
+        div.results {
+            text-align: center;
+            font-family: monospace;
+            font-size: 30px;
+            color: gray;
+            margin-top: 30px;    
+        }
+
+    }
+
+    ion-list.players {
+        margin:10px !important;
+    
+        ion-item-sliding.player{
+            border-radius: 5px;
+            margin-bottom:2px;
+            border:1px solid rgb(243, 243, 243);
+            padding:0px;
+
+
+            ion-label {
+                text-align: center;
+            }
+
+            .team-a {
+                ion-label {
+                    text-align: left;
+                }
+            }
+            .team-b {
+                ion-label {
+                    text-align: right;
+                }
+            }
+
+        }
+    
+    
+    }
+}

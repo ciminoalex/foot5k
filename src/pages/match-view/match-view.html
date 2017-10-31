@@ -8,10 +8,10 @@
   <ion-navbar>
     <ion-title>{{CurrentMatch?.ora | slice:0:5}} | {{CurrentMatch?.campo}}</ion-title>
     <ion-buttons end>
-        <button ion-button (click)="editMatch()" *ngIf="ImOwner == true">
-          <ion-icon name="create"></ion-icon>
-        </button>
-      </ion-buttons>
+      <button ion-button (click)="editMatch()" *ngIf="ImOwner == true">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -19,11 +19,19 @@
 <ion-content class="match-content">
 
   <ion-fab right bottom>
-      <button ion-fab color="secondary"><ion-icon name="arrow-dropup"></ion-icon></button>
-      <ion-fab-list side="top">
-          <button ion-fab (click)="shareMatch()"><ion-icon name="share"></ion-icon> <ion-label>Condividi</ion-label></button>
-          <button ion-fab (click)="addGuest()"><ion-icon name="person-add"></ion-icon> <ion-label>Aggiungi ospite</ion-label></button>
-        </ion-fab-list>
+    <button ion-fab color="secondary">
+      <ion-icon name="arrow-dropup"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="shareMatch()">
+        <ion-icon name="share"></ion-icon>
+        <ion-label>Condividi</ion-label>
+      </button>
+      <button ion-fab (click)="addGuest()">
+        <ion-icon name="person-add"></ion-icon>
+        <ion-label>Aggiungi ospite</ion-label>
+      </button>
+    </ion-fab-list>
   </ion-fab>
 
   <div>
@@ -62,9 +70,19 @@
             </div>
           </ion-col>
         </ion-row>
+        <ion-row>
+          <ion-col width-100>
+            <button ion-button width-100 (click)="goToDetails()" icon-start color="theme-color-2" style="width:100%">
+              <ion-icon name="checkmark"></ion-icon>
+              {{'MATCH_DETAILS' | translate}}
+            </button>
+          </ion-col>
+        </ion-row>
       </ion-item>
     </ion-list>
   </div>
+
+
 
   <ion-item [class]="CurrentMatchStatusClass">
     <ion-row class="match-action-row">

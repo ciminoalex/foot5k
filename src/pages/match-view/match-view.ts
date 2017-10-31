@@ -45,7 +45,6 @@ export class MatchViewPage {
   ) {
 
       this.loading = this.loadingCtrl.create();
-      
       this.LocalInfo.CurrentMatchID = this.navParams.get('matchId');
       console.log(this.LocalInfo.CurrentMatchID);
 
@@ -241,5 +240,8 @@ export class MatchViewPage {
           confirm.present();  
         }
           
+        goToDetails(){
+          this.app.getRootNav().push('MatchDetailsPage', {matchId: this.LocalInfo.CurrentMatchID});
+        }
 
 }
