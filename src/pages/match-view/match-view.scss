@@ -3,11 +3,36 @@ page-match-view {
         {
             background-color: color($colors, background, base);
 
+            .header-results{
+                
+                ion-col.results.col ion-item{
+                    background-color: unset !important;
+                }
+                div.results {
+                    text-align: center;
+                    font-family: monospace;
+                    font-size: 30px;
+                    color: gray;
+                    margin-top: 5px;    
+                }
+        
+                button {
+                    background-color: color($colors, button-alt, base);
+                    color: color($colors, button-alt, contrast);
+                }
+
+                .match-detail-row {
+                    padding: 0px 5px 0px 0px;
+                }
+            }
+        
+
             .match-action {
                 //border: 1px solid $theme-color-2;
                 display: block;
                 //border-radius: 10px;
                 margin: 5px;
+                margin-top: 0px;
                 color:$theme-color-2;
                 background-color: #fff;
                 background-image: url(../assets/images/background-action-orange.png);
@@ -316,7 +341,8 @@ page-match-view {
 
 		.schedule-list
 		{
-			padding: 10px 5px;
+            padding: 00px 5px;
+            margin:unset !important;
 
 			.schedule-item
 			{

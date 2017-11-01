@@ -244,4 +244,11 @@ export class MatchViewPage {
           this.app.getRootNav().push('MatchDetailsPage', {matchId: this.LocalInfo.CurrentMatchID});
         }
 
+        getUserPicture(picture:string){
+          var _return:string = picture;
+          console.log(_return);
+          if(picture=='/images/ospite.jpg'){_return= './assets/images/ospite.jpg';}
+          return _return;
+        }
+      
 }

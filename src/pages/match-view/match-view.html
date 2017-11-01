@@ -70,19 +70,41 @@
             </div>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col width-100>
-            <button ion-button width-100 (click)="goToDetails()" icon-start color="theme-color-2" style="width:100%">
-              <ion-icon name="checkmark"></ion-icon>
-              {{'MATCH_DETAILS' | translate}}
-            </button>
-          </ion-col>
-        </ion-row>
       </ion-item>
     </ion-list>
   </div>
 
-
+  <div class="header-results">
+    <ion-row>
+      <ion-col width-10>
+      </ion-col>
+      <ion-col width-20 class="teams team-a">
+        <ion-avatar item-center>
+          <preload-image class="team-image" [ratio]="{w:1, h:1}" src="./assets/images/team-logo-a.png"></preload-image>
+        </ion-avatar>
+      </ion-col>
+      <ion-col width-40 class="results">
+        <ion-item>
+          <div class="results">{{CurrentMatch?.goals_a}}-{{CurrentMatch?.goals_b}}</div>
+        </ion-item>
+      </ion-col>
+      <ion-col width-20 class="teams team-b">
+        <ion-avatar item-center>
+          <preload-image class="team-image" [ratio]="{w:1, h:1}" src="./assets/images/team-logo-b.png"></preload-image>
+        </ion-avatar>
+      </ion-col>
+      <ion-col width-10>
+      </ion-col>
+    </ion-row>
+    <ion-row class="match-detail-row">
+    <ion-col >
+      <button ion-button width-100 (click)="goToDetails()" icon-start color="theme-color-2" style="width:100%">
+        <ion-icon name="checkmark"></ion-icon>
+        {{'MATCH_DETAILS' | translate}}
+      </button>
+    </ion-col>
+  </ion-row>
+</div>
 
   <ion-item [class]="CurrentMatchStatusClass">
     <ion-row class="match-action-row">
@@ -112,7 +134,7 @@
     <ion-item class="players-item" *ngFor="let user of CurrentMatch?.conferme" (press)="activePlayerMenu(user.ID, user.Type ,user.NomeCompleto)">
       <div [class]="user.Type"></div>
       <ion-avatar item-left>
-        <preload-image class="user-image" [ratio]="{w:1, h:1}" [src]="user.Picture"></preload-image>
+        <preload-image class="user-image" [ratio]="{w:1, h:1}" [src]="getUserPicture(user.Picture)"></preload-image>
       </ion-avatar>
       <h2 class="item-title">{{user.NomeCompleto}}</h2>
       <ion-note class="item-time" item-right>{{user.Ruolo}}</ion-note>

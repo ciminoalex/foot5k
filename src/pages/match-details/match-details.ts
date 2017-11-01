@@ -67,14 +67,83 @@ export class MatchDetailsPage {
       });
   }
 
-  setGoal(playerID:string,goal:number){
-    console.log(playerID);
+  setGoal(player:any,goal:number){
+    console.log(player.ID);
+    console.log(player.goals);
     console.log(goal);
-  }
+
+    var goals:number = parseInt(player.goals)+goal;
+    console.log(goals);
+    
+    this.MatchesService.updatePlayerGoals(this.LocalInfo.CurrentMatchID,player.ID,goals).subscribe(data=>{
+      this.loading.dismiss();
+      this.refreshData();
+    });
+}
   
   checkGoalMarker(goals:number, index:number)
   {
-    return goals>index;
+
+    var _return:boolean = false;
+
+
+    if(index<0&&goals<=index){
+    _return = true;}
+
+    if(index>0&&goals>=index){
+    _return = true;}
+
+    return _return;
   }
 
+  getGoalImage(goals:number){
+    var _return:string = './assets/images/football.png';
+    if(goals<0)
+      _return = './assets/images/football-auto.png';
+
+    console.log(goals);
+    return _return;
+  }
+
+
+  shareMatch() {
+    
+        var title: string = this.CurrentMatch.campo;
+        var description: string = this.CurrentMatch.campo + "\n";
+        var thumbnail: string = null;
+    
+        let newDate = new Date(this.CurrentMatch.data);
+        description+=("0"+newDate.getDate()).slice(-2)+"/"+("0"+(newDate.getMonth()+1)).slice(-2)+ "/"+newDate.getFullYear()+ " ("+this.CurrentMatch.ora.slice(0,5)+"-"+this.CurrentMatch.ora_a.slice(0,5)+") \n\n";
+
+        
+        description+="Squadra A: \n";
+        var i:number = 1;
+        for (let users of this.CurrentMatch.players_a) {
+          description += ("0"+i).slice(-2)+". "+ users.NomeCompleto + "\n";
+          i++;
+        } 
+        description+="\n";
+        description+="Squadra B: \n";
+        i = 1;
+        for (let users of this.CurrentMatch.players_b) {
+          description += ("0"+i).slice(-2)+". "+ users.NomeCompleto + "\n";
+          i++;
+        } 
+    
+        if(this.CurrentMatch.conferme_num<Number(this.CurrentMatch.giocatori)){
+          description += "\n";
+          description += "Mancano "+(Number(this.CurrentMatch.giocatori)-this.CurrentMatch.conferme_num)+" giocatori.";
+        }
+      
+        console.log(description);
+    
+         this.socialSharing.share(description, title, thumbnail, null)
+         .then(() => {
+           console.log('Success!');
+         })
+         .catch(() => {
+            console.log('Error');
+         });
+        }
+    
 }

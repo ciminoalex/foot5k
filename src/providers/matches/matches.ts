@@ -85,4 +85,9 @@ export class MatchesProvider {
     return this.http.get(this.global_vars.json_url + '?action=assignplayertoteam&mid='+matchId+'&uid='+playerId+'&team='+team+'').map(res => res.json());
   }
 
+  updatePlayerGoals(matchId:string,playerId:string,goals:number){
+    console.log(this.global_vars.json_url + '?action=updateplayergoals&mid='+matchId+'&uid='+playerId+'&goals='+goals+'');
+    return this.http.get(this.global_vars.json_url + '?action=updateplayergoals&mid='+matchId+'&uid='+playerId+'&goals='+goals+'').map(res => res.json());
+  }
+
 }

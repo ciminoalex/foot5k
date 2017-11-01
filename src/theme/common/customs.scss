@@ -3,8 +3,8 @@
     width: 25vw;
 }
 
-.item-ios.item-block .item-inner{
-    border-bottom:unset;
+.item-ios.item-block .item-inner, .list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block, .list-ios > .item-block:first-child{
+    border:unset;
 }
 
 .list-md .item-block .item-inner{

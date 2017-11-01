@@ -40,7 +40,7 @@
                     <ion-icon class="description-icon" name="people"></ion-icon>
                     <div class="description-text one-line">
                       <span *ngFor="let user of match.conferme">
-                        <img src="{{user.Picture}}" style="height:15px;width:15px;border-radius:8px;">
+                        <img [src]="getUserPicture(user.Picture)" style="height:15px;width:15px;border-radius:8px;">
                       </span>
                     </div>
                   </div>
