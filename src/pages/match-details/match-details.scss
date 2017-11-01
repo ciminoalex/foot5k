@@ -7,34 +7,96 @@ page-match-details {
             font-family: monospace;
             font-size: 30px;
             color: gray;
-            margin-top: 30px;    
+            margin-top: 5px;    
         }
 
     }
 
     ion-list.players {
         margin:10px !important;
+        margin-top:0px  !important;
     
+        .team-header{
+
+            ion-col {
+                padding:unset;
+            }
+
+            .team-header-a, .team-header-b{
+                text-align: center;
+                color: #FFF;
+                padding:5px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                border-radius: 5px;
+            }
+            .team-header-a{
+                background: #387ef5;
+                margin-right:5px;
+            }
+            .team-header-b{
+                background: #f4344f;
+                margin-left:5px;
+            }
+        }
+
+
         ion-item-sliding.player{
             border-radius: 5px;
             margin-bottom:2px;
             border:1px solid rgb(243, 243, 243);
             padding:0px;
 
+            .goal-markers{
+
+                .goal-marker img{
+                    width:15px;
+                }
+
+            }
 
             ion-label {
                 text-align: center;
+                font-size: 14px;
             }
 
             .team-a {
                 ion-label {
                     text-align: left;
+                    padding-left:5px;
                 }
+
+                .goal-markers{
+                    float:right;
+                }
+                    
             }
             .team-b {
                 ion-label {
                     text-align: right;
+                    padding-right:5px;
                 }
+
+                .goal-markers{
+                    float:left;
+                }
+            }
+
+            .marker-team {
+                position: absolute;
+                width:10px;
+                height:100%;
+                background: blue;
+                top: 0px;
+            }
+
+            .marker-team-a {
+                left:0px;
+                background: #387ef5;
+            }
+            .marker-team-b {
+                right:0px;
+                background: #f4344f;
             }
 
         }

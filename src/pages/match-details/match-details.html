@@ -19,43 +19,70 @@
 <ion-content class="match-details">
   <div class="header-results">
     <ion-row>
-      <ion-col width-33 class="teams team-a">
+        <ion-col width-10>
+          </ion-col>
+          <ion-col width-20 class="teams team-a">
         <ion-avatar item-center>
-          <preload-image class="team-image" [ratio]="{w:1, h:1}" [src]=""></preload-image>
+          <preload-image class="team-image" [ratio]="{w:1, h:1}" src="./assets/images/team-logo-a.png"></preload-image>
         </ion-avatar>
       </ion-col>
-      <ion-col width-33 class="results">
+      <ion-col width-40 class="results">
         <ion-item>
-          <div class="results">1-2</div>
+          <div class="results">{{CurrentMatch?.goals_a}}-{{CurrentMatch?.goals_b}}</div>
         </ion-item>
       </ion-col>
-      <ion-col width-33 class="teams team-b">
+      <ion-col width-20 class="teams team-b">
         <ion-avatar item-center>
-          <preload-image class="team-image" [ratio]="{w:1, h:1}" [src]=""></preload-image>
+          <preload-image class="team-image" [ratio]="{w:1, h:1}" src="./assets/images/team-logo-b.png"></preload-image>
         </ion-avatar>
       </ion-col>
-    </ion-row>
+      <ion-col width-10>
+        </ion-col>
+  </ion-row>
   </div>
   <ion-list class="players">
+    <ion-row class="team-header">
+      <ion-col width-50>
+        <div class="team-header-a">{{'TEAM A' | translate}}</div>
+      </ion-col>
+      <ion-col width-50>
+        <div class="team-header-b">{{'TEAM B' | translate}}</div>
+      </ion-col>
+    </ion-row>
+      
     <!-- SQUADRA A -->
     <ion-item-sliding #item class="player team-a" *ngFor="let user of CurrentMatch?.players_a">
-        <ion-item class="player team-a"><div class="marker-team-a"></div>{{user.NomeCompleto}}</ion-item>
+        <ion-item class="player team-a">
+          <div class="marker-team marker-team-a"></div>
+          {{user.NomeCompleto}}
+          <div class="goal-markers">
+            <span class="goal-marker" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10]"><img src="./assets/images/football.png" *ngIf="checkGoalMarker(user.goals,number)" /></span>
+          </div>
+        </ion-item>
         <ion-item-options side="left">
-          <button ion-button (click)="assPlayerToTeam(user.ID,'A')">{{'TEAM A' | translate}}</button>
+          <button ion-button (click)="setGoal(user.ID,1)"><ion-icon name="football"></ion-icon>{{'+1' | translate}}</button>
+          <button ion-button color="danger" (click)="setGoal(user.ID,-1)"><ion-icon name="football"></ion-icon>{{'-1' | translate}}</button>
         </ion-item-options>
         <ion-item-options side="right">
-          <button ion-button color="danger"  (click)="assPlayerToTeam(user.ID,'B')">{{'TEAM B' | translate}}</button>
+          <button ion-button color="danger"  (click)="assPlayerToTeam(user.ID,'B')"><ion-icon name="people"></ion-icon>{{'TEAM B' | translate}}</button>
         </ion-item-options>
     </ion-item-sliding>
     <!-- SQUADRA B -->
     <ion-item-sliding #item class="player team-b" *ngFor="let user of CurrentMatch?.players_b">
-        <ion-item class="player team-b"><div class="marker-team-b"></div>{{user.NomeCompleto}}</ion-item>
+        <ion-item class="player team-b">
+          <div class="marker-team marker-team-b"></div>
+          {{user.NomeCompleto}}
+          <div class="goal-markers">
+            <span class="goal-marker" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10]"><img src="./assets/images/football.png" *ngIf="checkGoalMarker(user.goals,number)" /></span>
+          </div>
+          </ion-item>
         <ion-item-options side="left">
-          <button ion-button (click)="assPlayerToTeam(user.ID,'A')">{{'TEAM A' | translate}}</button>
+          <button ion-button (click)="assPlayerToTeam(user.ID,'A')"><ion-icon name="people"></ion-icon>{{'TEAM A' | translate}}</button>
         </ion-item-options>
         <ion-item-options side="right">
-          <button ion-button color="danger"  (click)="assPlayerToTeam(user.ID,'B')">{{'TEAM B' | translate}}</button>
-        </ion-item-options>
+            <button ion-button color="danger" (click)="setGoal(user.ID,-1)"><ion-icon name="football"></ion-icon>{{'-1' | translate}}</button>
+            <button ion-button (click)="setGoal(user.ID,1)"><ion-icon name="football"></ion-icon>{{'+1' | translate}}</button>
+          </ion-item-options>
       </ion-item-sliding>
     <!-- SENZA SQUADRA -->
     <ion-item-sliding #item class="player no-team" *ngFor="let user of CurrentMatch?.players_na">

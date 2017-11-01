@@ -143,5 +143,8 @@
   "CONFIRMED": "Conferme",
   "ALL_GROUPS": "Partita accessibile a tutti i gruppi",
   "SELECT_GROUP": "Seleziona gruppo",
-  "GROUP_COLOR": "Assegna un colore al gruppo"
+  "GROUP_COLOR": "Assegna un colore al gruppo",
+  "MATCH_DETAILS": "Dettagli partita",
+  "TEAM A": "Squadra A",
+  "TEAM B": "Squadra B"
 }

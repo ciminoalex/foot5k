@@ -67,4 +67,14 @@ export class MatchDetailsPage {
       });
   }
 
+  setGoal(playerID:string,goal:number){
+    console.log(playerID);
+    console.log(goal);
+  }
+  
+  checkGoalMarker(goals:number, index:number)
+  {
+    return goals>index;
+  }
+
 }
