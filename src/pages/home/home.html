@@ -32,7 +32,17 @@
         <preload-image class="user-image" [ratio]="{w:1, h:1}" [(src)]="CurrentUser.Picture" alt="CurrentUser.NomeCompleto" title="CurrentUser.NomeCompleto"></preload-image>
       </ion-col>
       <ion-col no-padding>
-        <ion-row class="social-presence-row" *ngIf="false">
+        <ion-row wrap class="user-bio-row">
+          <ion-col no-padding width-100>
+            <h2 class="user-name">{{CurrentUser.NomeCompleto}}</h2>
+          </ion-col>
+          <ion-col no-padding width-100>
+            <p class="user-description">
+              {{CurrentUser.description}}
+            </p>
+          </ion-col>
+        </ion-row>
+        <ion-row class="social-presence-row" *ngIf="true">
           <ion-col width-33 class="social-presence-item">
             <a>
               <h2 class="social-presence-value">{{CurrentUser.matches_played}}</h2>
@@ -50,16 +60,6 @@
               <h2 class="social-presence-value">{{CurrentUser.matches_lost}}</h2>
               <h4 class="social-presence-title">{{'LOST' | translate }}</h4>
             </a>
-          </ion-col>
-        </ion-row>
-        <ion-row wrap class="user-bio-row">
-          <ion-col no-padding width-100>
-            <h2 class="user-name">{{CurrentUser.NomeCompleto}}</h2>
-          </ion-col>
-          <ion-col no-padding width-100>
-            <p class="user-description">
-              {{CurrentUser.description}}
-            </p>
           </ion-col>
         </ion-row>
         <ion-row class="profile-action-row">
