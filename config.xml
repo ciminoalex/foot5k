@@ -84,28 +84,16 @@
     </platform>
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="^4.4.0" />
-    <plugin name="cordova-plugin-admob-free" spec="^0.9.0" />
     <plugin name="cordova-plugin-apprate" spec="^1.3.0" />
-    <plugin name="cordova-plugin-camera" spec="^2.4.1">
-        <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
-        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" " />
-    </plugin>
     <plugin name="cordova-plugin-console" spec="^1.0.7" />
     <plugin name="cordova-plugin-crop" spec="^0.3.1" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
-    <plugin name="cordova-plugin-email-composer" spec="^0.8.9" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="123608394989802" />
         <variable name="APP_NAME" value="Foot5K - Login" />
     </plugin>
-    <plugin name="cordova-plugin-file" spec="^4.3.3" />
-    <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
-    <plugin name="cordova-plugin-filepath" spec="^1.1.0" />
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value=" " />
-    </plugin>
-    <plugin name="cordova-plugin-googleplus" spec="git+https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git">
-        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.386500322162-qqgt7f53q7krn8p6fr6dduga04qrn4k7" />
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.2.2" />
@@ -114,7 +102,19 @@
     <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.2.0" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <plugin name="cordova-plugin-admob-free" spec="^0.9.0" />
+    <plugin name="cordova-plugin-email-composer" spec="^0.8.9" />
     <plugin name="twitter-connect-plugin" spec="^0.6.0">
         <variable name="FABRIC_KEY" value="6da298eb1112d28ba03183d50236498db4b7380e" />
     </plugin>
+    <plugin name="cordova-plugin-googleplus" spec="git+https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.386500322162-qqgt7f53q7krn8p6fr6dduga04qrn4k7" />
+    </plugin>
+    <plugin name="cordova-plugin-camera" spec="^2.4.1">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" " />
+    </plugin>
+    <plugin name="cordova-plugin-file" spec="^4.3.3" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
+    <plugin name="cordova-plugin-filepath" spec="^1.1.0" />
 </widget>
