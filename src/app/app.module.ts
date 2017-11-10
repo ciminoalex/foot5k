@@ -44,6 +44,11 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { Crop } from '@ionic-native/crop';
 import { EmailComposer } from '@ionic-native/email-composer';
 
+import { File } from '@ionic-native/file';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
+import { Camera } from '@ionic-native/camera';
+
 // Functionalities
 
 import { VideoPlayerModule } from '../components/video-player/video-player.module';
@@ -145,7 +150,11 @@ export function provideStorage() {
     GlobalVars,
     LocalInfoProvider,
     MatchesProvider,
-    GroupsProvider
+    GroupsProvider,
+    File,
+    Transfer,
+    Camera,
+    FilePath
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

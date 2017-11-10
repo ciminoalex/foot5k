@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, LoadingController, Platform } from 'ionic-angular';
+import { NavController, ModalController, LoadingController, Platform, ActionSheetController, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
@@ -25,6 +25,13 @@ import { LocalInfoProvider } from '../../providers/local-info/local-info';
 import { UserObject } from '../../providers/users/users.model';
 
 import { Storage } from '@ionic/Storage';
+
+import { File } from '@ionic-native/file';
+import { Transfer, TransferObject } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
+import { Camera } from '@ionic-native/camera';
+declare var cordova: any;
+
 
 @Component({
   selector: 'settings-page',
@@ -55,11 +62,20 @@ export class SettingsPage {
     public platform: Platform,
     public UsersService: UsersProvider,
     public storage: Storage,
-    public LocalInfo: LocalInfoProvider
-  ) {
-    this.loading = this.loadingCtrl.create();
+    public LocalInfo: LocalInfoProvider,
+    private camera: Camera, 
+    private transfer: Transfer, 
+    private file: File, 
+    private filePath: FilePath, 
+    public actionSheetCtrl: ActionSheetController, 
+    public toastCtrl: ToastController
 
+  ) {
+
+    this.loading = this.loadingCtrl.create();
     this.languages = this.languageService.getLanguages();
+
+    this.CurrentUser = this.LocalInfo.CurrentUserObj;
 
     this.settingsForm = new FormGroup({
       name: new FormControl(),
@@ -80,6 +96,8 @@ export class SettingsPage {
     this.loading.present();
     this.UsersService.getUserByID(this.LocalInfo.CurrentUserID).subscribe(data=>{
       this.CurrentUser = data;
+
+      console.log(this.CurrentUser);
 
       // setValue: With setValue, you assign every form control value at once by passing in a data object whose properties exactly match the form model behind the FormGroup.
       // patchValue: With patchValue, you can assign values to specific controls in a FormGroup by supplying an object of key/value pairs for just the controls of interest.
@@ -155,9 +173,19 @@ export class SettingsPage {
     });
   }
 
-  openImagePicker(){
+
+  debug:any;
+
+  /*openImagePicker(){
+
+   this.debug = "openImagePicker";
+
    this.imagePicker.hasReadPermission().then(
      (result) => {
+
+      this.debug = "openImagePicker: "+result;
+      
+
        if(result == false){
          // no callbacks required as this opens a popup which returns async
          this.imagePicker.requestReadPermission();
@@ -179,5 +207,60 @@ export class SettingsPage {
        }
      }
    )
+  }*/
+
+  openImagePicker(){
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Select Image Source',
+      buttons: [
+        {
+          text: 'Load from Library',
+          handler: () => {
+            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+          }
+        },
+        {
+          text: 'Use Camera',
+          handler: () => {
+            this.takePicture(this.camera.PictureSourceType.CAMERA);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
+    });
+    actionSheet.present();    
   }
+
+  public takePicture(sourceType) {
+    // Create options for the Camera Dialog
+    var options = {
+      quality: 100,
+      sourceType: sourceType,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
+    };
+   
+    // Get the data of an image
+    this.camera.getPicture(options).then((imagePath) => {
+      // Special handling for Android library
+      if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
+        this.filePath.resolveNativePath(imagePath)
+          .then(filePath => {
+            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+            let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+            //this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+          });
+      } else {
+        var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+        var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+        //this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+      }
+    }, (err) => {
+      //this.presentToast('Error while selecting image.');
+    });
+  }
+
 }
