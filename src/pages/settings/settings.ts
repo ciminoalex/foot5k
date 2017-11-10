@@ -307,7 +307,8 @@ export class SettingsPage {
    
     // File name only
     var filename = this.lastImage;
-   
+    var fileurl = "http://foot5k.com/images/profiles/"+this.lastImage;
+    
     var options = {
       fileKey: "file",
       fileName: filename,
@@ -327,10 +328,12 @@ export class SettingsPage {
     fileTransfer.upload(targetPath, url, options).then(data => {
       this.loading.dismissAll()
       this.presentToast('Image succesful uploaded.');
+      this.CurrentUser.Picture = fileurl;
     }, err => {
       this.loading.dismissAll()
       this.presentToast('Error while uploading file.');
     });
+
   }
 
 }
