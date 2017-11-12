@@ -88,7 +88,7 @@
         "@ionic/app-scripts": "^2.1.4",
         "typescript": "2.3.4"
     },
-    "description": "ion2-FullApp: The Best Ionic 2 Starter app.",
+    "description": "Foot5K: Organizza le tue partite di calcetto",
     "config": {
         "ionic_sass": "./config/sass.config.js"
     },
